@@ -1,13 +1,13 @@
 namespace RenjuLib.Player;
 
-public class HumanPlayer(
+public class SimpleBotPlayer(
     bool isBlack,
     string name,
     ISession session = null!
 ) : Player(isBlack, name, session)
 {
     /**
-     * Await a move from the player.
+     * Make a move as a bot.
      */
     public override async Task<Move> MakeMove()
     {

@@ -8,9 +8,14 @@ public interface IPlayer
     bool IsBlack { get; }
     
     /**
-     * The game session the player is attached to.
+     * The player's name.
      */
-    GameSession? Session { get; set; }
+    string Name { get; }
+    
+    /**
+     * The current game session the player is attached to.
+     */
+    ISession Session { get; set; }
     
     /**
      * Await a move from the player.
