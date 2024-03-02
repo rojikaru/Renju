@@ -1,11 +1,13 @@
-namespace RenjuLib.Session;
+namespace RenjuLib.Round;
 
-public class GameSession(
+public class GameRound(
     IPlayer blackPlayer,
     IPlayer whitePlayer
 )
 {
-    public RenjuBoard RenjuBoard { get; } = new();
+    private RenjuBoard RenjuBoard { get; } = new();
+    
+    public GameResult Result { get; private set; }
 
     private bool IsWin(bool isBlack)
     {
@@ -37,15 +39,17 @@ public class GameSession(
     
     public async Task<GameResult> Play()
     {
+        bool isBlack = true;
         while (true)
         {
-            var result = await MakeTurn(blackPlayer);
+            var result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
             if (result != GameResult.OnGoing)
+            {
+                Result = result;
                 return result;
+            }
             
-            result = await MakeTurn(whitePlayer);
-            if (result != GameResult.OnGoing)
-                return result;
+            isBlack = !isBlack;
         }
     }
 }
