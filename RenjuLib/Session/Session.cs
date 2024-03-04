@@ -11,15 +11,8 @@ public abstract class Session(
     
     public RenjuBoard Board { get; } = new();
 
-    public virtual GameRound[] Rounds { get; set; } = rounds;
-    public virtual GameRound CurrentRound { get; protected set; } = rounds[0];
-    
-    public virtual async Task Play()
-    {
-        foreach (var round in Rounds)
-        {
-            CurrentRound = round;
-            await CurrentRound.Play();
-        }
-    }
+    public virtual GameRound[] Rounds { get; } = rounds;
+    public virtual GameRound CurrentRound { get; } = rounds[0];
+
+    public abstract Task Play();
 }

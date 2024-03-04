@@ -2,17 +2,20 @@ namespace RenjuLib.Board;
 
 public class RenjuBoard
 {
+    private const int BoardSize = 13;
+    
     /**
      * The board is 15x15, but the stone can be placed
      * only on the intersections of the lines.
      */
-    public Move?[,] Intersections { get; } = new Move?[13, 13];
+    public CellStone[,] Intersections { get; } 
+        = new CellStone[BoardSize, BoardSize];
 
     public GameResult Result { get; private set; }
 
     private void EnsureCellEmpty(int x, int y)
     {
-        if (Intersections[x, y] is not null)
+        if (Intersections[x, y] != CellStone.None)
             throw new InvalidOperationException("Cell is already occupied");
     }
 
@@ -28,6 +31,6 @@ public class RenjuBoard
     public void AddMove(Move move)
     {
         EnsureCellEmpty(move.X, move.Y);
-        Intersections[move.X, move.Y] = move;
+        Intersections[move.X, move.Y] = move.Stone;
     }
 }
