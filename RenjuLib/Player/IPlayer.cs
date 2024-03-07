@@ -1,5 +1,10 @@
 namespace RenjuLib.Player;
 
+// TODO: Add stats for the player
+
+/**
+ * A player in the game.
+ */
 public interface IPlayer
 {
     /**
@@ -11,11 +16,6 @@ public interface IPlayer
      * The player's name.
      */
     string Name { get; }
-    
-    /**
-     * The current game session the player is attached to.
-     */
-    ISession Session { get; set; }
     
     /**
      * Await a move from the player.

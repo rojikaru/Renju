@@ -11,8 +11,6 @@ public class RenjuBoard
     public CellStone[,] Intersections { get; } 
         = new CellStone[BoardSize, BoardSize];
 
-    public GameResult Result { get; private set; }
-
     private void EnsureCellEmpty(int x, int y)
     {
         if (Intersections[x, y] != CellStone.None)

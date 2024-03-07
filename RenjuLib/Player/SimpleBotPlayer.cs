@@ -2,9 +2,8 @@ namespace RenjuLib.Player;
 
 public class SimpleBotPlayer(
     bool isBlack,
-    string name,
-    ISession session = null!
-) : Player(isBlack, name, session)
+    string name
+) : Player(isBlack, name)
 {
     /**
      * Make a move as a bot.
