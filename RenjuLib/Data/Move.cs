@@ -10,7 +10,7 @@ public record struct Move
             throw new ArgumentOutOfRangeException(name);
     }
 
-    private CellStone _stone;
+    private readonly CellStone _stone;
 
     public CellStone Stone
     {

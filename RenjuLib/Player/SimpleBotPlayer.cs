@@ -1,9 +1,9 @@
 namespace RenjuLib.Player;
 
 public class SimpleBotPlayer(
-    bool isBlack,
+    CellStone color,
     string name
-) : Player(isBlack, name)
+) : Player(color, name)
 {
     /**
      * Make a move as a bot.

@@ -10,7 +10,17 @@ public interface IPlayer
     /**
      * The player's color.
      */
-    bool IsBlack { get; }
+    CellStone Color { get; }
+    
+    /**
+     * Whether the player is black.
+     */
+    bool IsBlack => Color == CellStone.Black;
+    
+    /**
+     * Whether the player is white.
+     */
+    bool IsWhite => Color == CellStone.White;
     
     /**
      * The player's name.

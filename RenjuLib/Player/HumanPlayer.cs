@@ -3,9 +3,9 @@ namespace RenjuLib.Player;
 // TODO: Add an event for when the player clicks on the board
 
 public class HumanPlayer(
-    bool isBlack,
+    CellStone color,
     string name
-) : Player(isBlack, name)
+) : Player(color, name)
 {
     /**
      * Await a move from the player.
