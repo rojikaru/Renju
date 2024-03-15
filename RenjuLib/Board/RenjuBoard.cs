@@ -28,14 +28,14 @@ public class RenjuBoard
         
         for (var x = 0; x < BoardSize; x++)
             for (var y = 0; y < BoardSize; y++)
-                Intersections.Add(new Move(x, y, CellStone.None));
+                Intersections.Add(new Intersection(x, y, CellStone.None));
     }
 
     /**
      * The board is 15x15, but the stone can be placed
      * only on the intersections of the lines.
      */
-    public ObservableCollection<Move> Intersections { get; }
+    public ObservableCollection<Intersection> Intersections { get; }
     
     /**
      * <summary>
@@ -45,7 +45,7 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>The data of the cell.</returns>
      */
-    public Move CellAt(int x, int y) => Intersections[x * BoardSize + y];
+    public Intersection CellAt(int x, int y) => Intersections[x * BoardSize + y];
 
     /**
      * <summary>

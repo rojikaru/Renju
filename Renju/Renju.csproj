@@ -15,9 +15,6 @@
 
     <ItemGroup>
       <None Remove="Backgrounds\board1.png" />
-      <Resource Include="Backgrounds\board1.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
     </ItemGroup>
 
     <ItemGroup>
@@ -30,6 +27,14 @@
 
     <ItemGroup>
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pictures\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Pictures\Backgrounds\board1.png" />
     </ItemGroup>
 
 </Project>
