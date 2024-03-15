@@ -32,7 +32,7 @@ public class GameRound(
         for (int i = 0; i < 5; i++)
         {
             if (RenjuBoard.IsWithinBounds(x, y) &&
-                RenjuBoard.Intersections[x, y] == stoneToCheck)
+                RenjuBoard.CellAt(x, y).Stone == stoneToCheck)
                 count++;
             else break;
 
@@ -47,7 +47,7 @@ public class GameRound(
         // Check if the board is full
         for (int i = 0; i < RenjuBoard.BoardSize; i++)
         for (int j = 0; j < RenjuBoard.BoardSize; j++)
-            if (RenjuBoard.Intersections[i, j] == CellStone.None)
+            if (RenjuBoard.IsCellEmpty(i, j))
                 // Board is not full, so it's not a draw
                 return false;
 
