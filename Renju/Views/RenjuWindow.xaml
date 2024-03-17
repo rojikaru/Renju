@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:vm="clr-namespace:Renju.ViewModels"
+        xmlns:model="clr-namespace:Renju.Models"
         mc:Ignorable="d"
         Title="RenjuWindow" MinHeight="478" MinWidth="800" SizeToContent="WidthAndHeight">
     <Window.DataContext>
@@ -33,7 +34,7 @@
                 <ImageBrush ImageSource="/Pictures/Backgrounds/board1.png" Stretch="UniformToFill" />
             </Grid.Background>
 
-            <ItemsControl Margin="20" ItemsSource="{Binding CurrentGameSession.Board.Intersections}">
+            <ItemsControl Margin="20" ItemsSource="{Binding Board}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Width="520" Orientation="Horizontal" />
@@ -42,10 +43,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="40" Height="40">
-                            <!-- <Grid.InputBindings> -->
-                            <!--     <MouseBinding  Gesture="LeftDoubleClick"  -->
-                            <!--                    Command="{}"/> -->
-                            <!-- </Grid.InputBindings> -->
+                            <Grid.Resources>
+                                <model:BindingProxy x:Key="Proxy" Data="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window} }" />
+                            </Grid.Resources>
+                            <Grid.InputBindings>
+                                <MouseBinding  Gesture="LeftClick"
+                                               Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}"
+                                               CommandParameter="{Binding}"/>
+                            </Grid.InputBindings>
                             <Border>
                                 <Border.BorderBrush>Black</Border.BorderBrush>
                                 <TextBlock Text="{Binding Stone}"/>
