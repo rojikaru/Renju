@@ -7,8 +7,14 @@ namespace RenjuLib.Board;
  */
 public class RenjuBoard
 {
-    /*
+    /**
+     * <summary>
      * The size of the renju board.
+     * </summary>
+     * <remarks>
+     * The board is 15x15, but the stone can be placed
+     * only on the intersections of the lines.
+     * </remarks>
      */
     public const int BoardSize = 13;
 
@@ -33,8 +39,13 @@ public class RenjuBoard
     public event Action? BoardChanged;
 
     /**
+     * <summary>
+     * The intersections of the board. (Flat list)
+     * </summary>
+     * <remarks>
      * The board is 15x15, but the stone can be placed
      * only on the intersections of the lines.
+     * </remarks>
      */
     public IList<Intersection> Intersections { get; }
 
@@ -54,11 +65,11 @@ public class RenjuBoard
 
     /**
      * <summary>
-     * Get a data of a specified cell status.
+     * Get a a specified cell.
      * </summary>
      * <param name="x">The x coordinate of the cell.</param>
      * <param name="y">The y coordinate of the cell.</param>
-     * <returns>The data of the cell.</returns>
+     * <returns>The cell on a requested position.</returns>
      */
     public Intersection CellAt(int x, int y) => Intersections[x * BoardSize + y];
 
@@ -70,7 +81,8 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>True if the cell is empty, false otherwise.</returns>
      */
-    public bool IsCellEmpty(int x, int y) => CellAt(x, y).Stone == CellStone.Empty;
+    public bool IsCellEmpty(int x, int y) 
+     => CellAt(x, y).Stone == CellStone.Empty;
 
     /**
      * <summary>
@@ -90,14 +102,17 @@ public class RenjuBoard
     public void AddMove(Move move)
     {
         // Ensuring the move is within the board is done by the Move class
+        
         // Ensuring the cell is empty
         if (!IsCellEmpty(move.X, move.Y))
             throw new InvalidOperationException("Cell is already occupied");
 
         // Adding the move
         Intersections[move.X * BoardSize + move.Y] = move;
+        
+        // Raising the event that the board has changed
         BoardChanged?.Invoke();
     }
 
-    // TODO: Consider adding a RevertMove method
+    // TODO: Consider adding a RevertMove method to revert the last move
 }

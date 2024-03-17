@@ -1,5 +1,3 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-
 namespace Renju.ViewModels;
 
 public sealed class RenjuViewModel : ObservableObject
