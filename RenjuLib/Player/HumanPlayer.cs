@@ -1,20 +1,20 @@
 namespace RenjuLib.Player;
 
-// TODO: Add an event for when the player clicks on the board
-
 public class HumanPlayer(
     CellStone color,
     string name
 ) : Player(color, name)
 {
-    /**
-     * Await a move from the player.
-     */
     public override async Task<Move> MakeMove()
         => await (
             AwaitMove?.Invoke()
             ?? throw new InvalidOperationException("AwaitMove is null")
         );
 
+    /**
+     * An event for handling human's clicks on the board. <br/>
+     * Here should be the logic to await the player's input
+     * and return the move they made.
+     */
     public event Func<Task<Move>>? AwaitMove;
 }

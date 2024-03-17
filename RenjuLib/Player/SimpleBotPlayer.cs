@@ -6,7 +6,7 @@ public class SimpleBotPlayer(
 ) : Player(color, name)
 {
     /**
-     * Make a move as a bot.
+     * Await a move from a bot.
      */
     public override async Task<Move> MakeMove()
     {

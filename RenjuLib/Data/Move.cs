@@ -14,14 +14,14 @@ public sealed class Move(int x, int y, CellStone stone)
     // TODO: Add player info
 
     private readonly CellStone _stone;
-
+    
     public override CellStone Stone
     {
         get => _stone;
         init
         {
-            if (value == CellStone.None)
-                throw new ArgumentException("Stone cannot be None");
+            if (value == CellStone.Empty)
+                throw new ArgumentException("Stone cannot be Empty");
 
             _stone = value;
         }

@@ -1,5 +1,11 @@
 namespace RenjuLib.Session;
 
+/**
+ * <summary>
+ * The game session.
+ * It contains the players, the game board, and rounds.
+ * </summary>
+ */
 public abstract class Session(
     IPlayer blackPlayer,
     IPlayer whitePlayer,

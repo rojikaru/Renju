@@ -1,5 +1,10 @@
 namespace RenjuLib.Session;
 
+/**
+ * <summary>
+ * The game session for a single round.
+ * </summary>
+ */
 public class SingleSession(
     IPlayer blackPlayer,
     IPlayer whitePlayer

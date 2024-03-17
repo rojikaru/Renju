@@ -53,7 +53,7 @@ public sealed class RenjuViewModel : ObservableObject
 
     private void OnBoardClick(Intersection? i)
     {
-        if (i is null || i.Stone != CellStone.None)
+        if (i is null || i.Stone != CellStone.Empty)
             return;
         
         _lastMove = i;

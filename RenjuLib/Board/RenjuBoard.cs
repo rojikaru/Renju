@@ -1,5 +1,10 @@
 namespace RenjuLib.Board;
 
+/**
+ * <summary>
+ * The renju board.
+ * </summary>
+ */
 public class RenjuBoard
 {
     /*
@@ -27,21 +32,24 @@ public class RenjuBoard
      */
     public event Action? BoardChanged;
 
-    public Action? BoardChangedAction => BoardChanged; 
-
     /**
      * The board is 15x15, but the stone can be placed
      * only on the intersections of the lines.
      */
     public IList<Intersection> Intersections { get; }
 
+    /**
+     * <summary>
+     * Create a new instance of the RenjuBoard class.
+     * </summary>
+     */
     public RenjuBoard()
     {
         Intersections = [];
 
         for (var x = 0; x < BoardSize; x++)
         for (var y = 0; y < BoardSize; y++)
-            Intersections.Add(new Intersection(x, y, CellStone.None));
+            Intersections.Add(new Intersection(x, y, CellStone.Empty));
     }
 
     /**
@@ -62,7 +70,7 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>True if the cell is empty, false otherwise.</returns>
      */
-    public bool IsCellEmpty(int x, int y) => CellAt(x, y).Stone == CellStone.None;
+    public bool IsCellEmpty(int x, int y) => CellAt(x, y).Stone == CellStone.Empty;
 
     /**
      * <summary>
@@ -76,7 +84,7 @@ public class RenjuBoard
      * Thrown when the move is out of the board.
      * </exception>
      * <exception cref="ArgumentException">
-     * Thrown when the stone is None.
+     * Thrown when the stone is Empty.
      * </exception>
      */
     public void AddMove(Move move)
