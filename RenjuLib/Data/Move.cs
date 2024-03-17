@@ -8,10 +8,11 @@ namespace RenjuLib.Data;
  * and the coordinates of the move.
  * </summary>
  */
-public sealed class Move : Intersection
+public sealed class Move(int x, int y, CellStone stone)
+    : Intersection(x, y, stone)
 {
     // TODO: Add player info
-    
+
     private readonly CellStone _stone;
 
     public override CellStone Stone
@@ -21,15 +22,10 @@ public sealed class Move : Intersection
         {
             if (value == CellStone.None)
                 throw new ArgumentException("Stone cannot be None");
-            
+
             _stone = value;
         }
     }
-    
-    public Move(int x, int y, CellStone stone)
-    {
-        X = x;
-        Y = y;
-        Stone = stone;
-    }
+
+    public override string ToString() => $"Move({X}, {Y}, {Stone})";
 }

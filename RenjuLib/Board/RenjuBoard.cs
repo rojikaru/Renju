@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-
 namespace RenjuLib.Board;
 
 public class RenjuBoard
@@ -8,7 +6,7 @@ public class RenjuBoard
      * The size of the renju board.
      */
     public const int BoardSize = 13;
-    
+
     /**
      * <summary>
      * Check if the coordinates are within the bounds of the board.
@@ -22,21 +20,30 @@ public class RenjuBoard
         return x is >= 0 and < BoardSize && y is >= 0 and < BoardSize;
     }
 
-    public RenjuBoard()
-    {
-        Intersections = [];
-        
-        for (var x = 0; x < BoardSize; x++)
-            for (var y = 0; y < BoardSize; y++)
-                Intersections.Add(new Intersection(x, y, CellStone.None));
-    }
+    /**
+     * <summary>
+     * The event that is raised when the board is changed.
+     * </summary>
+     */
+    public event Action? BoardChanged;
+
+    public Action? BoardChangedAction => BoardChanged; 
 
     /**
      * The board is 15x15, but the stone can be placed
      * only on the intersections of the lines.
      */
-    public ObservableCollection<Intersection> Intersections { get; }
-    
+    public IList<Intersection> Intersections { get; }
+
+    public RenjuBoard()
+    {
+        Intersections = [];
+
+        for (var x = 0; x < BoardSize; x++)
+        for (var y = 0; y < BoardSize; y++)
+            Intersections.Add(new Intersection(x, y, CellStone.None));
+    }
+
     /**
      * <summary>
      * Get a data of a specified cell status.
@@ -76,12 +83,13 @@ public class RenjuBoard
     {
         // Ensuring the move is within the board is done by the Move class
         // Ensuring the cell is empty
-        if (IsCellEmpty(move.X, move.Y))
+        if (!IsCellEmpty(move.X, move.Y))
             throw new InvalidOperationException("Cell is already occupied");
 
         // Adding the move
         Intersections[move.X * BoardSize + move.Y] = move;
+        BoardChanged?.Invoke();
     }
-    
+
     // TODO: Consider adding a RevertMove method
 }

@@ -3,12 +3,14 @@ namespace RenjuLib.Session;
 public interface ISession
 {
     IPlayer BlackPlayer { get; }
-    IPlayer WhitePlayer { get; }
     
-    RenjuBoard Board { get; }
+    IPlayer WhitePlayer { get; }
     
     Task Play();
     
-    GameRound[] Rounds { get; }
+    event Action? BoardChanged;
+    
+    IEnumerable<GameRound> Rounds { get; }
+    
     GameRound CurrentRound { get; }
 }

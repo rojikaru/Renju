@@ -1,6 +1,6 @@
 namespace RenjuLib.Data;
 
-public enum CellStone
+public enum CellStone : byte
 {
     None,
     Black,

@@ -5,10 +5,10 @@ public class GameRound(
     IPlayer whitePlayer
 )
 {
-    private RenjuBoard RenjuBoard { get; } = new();
+    public RenjuBoard RenjuBoard { get; } = new();
 
     public GameResult Result { get; private set; }
-
+    
     private bool IsWin(CellStone stoneColor, Move move)
     {
         if (stoneColor == CellStone.None)
@@ -66,6 +66,11 @@ public class GameRound(
                 return player.IsBlack ? GameResult.BlackWin : GameResult.WhiteWin;
             // else
             return IsDraw() ? GameResult.Draw : GameResult.OnGoing;
+        }
+        catch (ArgumentException ex)
+        {
+            await Console.Error.WriteLineAsync(ex.Message);
+            throw new InvalidOperationException("Invalid move");
         }
         catch
         {

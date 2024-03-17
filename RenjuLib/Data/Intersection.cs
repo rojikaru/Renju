@@ -50,4 +50,6 @@ public class Intersection
     
     protected Intersection() 
         : this(0, 0, CellStone.None) {}
+    
+    public override string ToString() => $"Intersection({X}, {Y})";
 }

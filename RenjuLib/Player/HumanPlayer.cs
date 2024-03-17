@@ -11,7 +11,10 @@ public class HumanPlayer(
      * Await a move from the player.
      */
     public override async Task<Move> MakeMove()
-    {
-        throw new NotImplementedException();
-    }
+        => await (
+            AwaitMove?.Invoke()
+            ?? throw new InvalidOperationException("AwaitMove is null")
+        );
+
+    public event Func<Task<Move>>? AwaitMove;
 }
