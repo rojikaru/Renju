@@ -1,5 +1,10 @@
 namespace RenjuLib.Player;
 
+/**
+ * <summary>
+ * A simple bot player.
+ * </summary>
+ */
 public class SimpleBotPlayer(
     CellStone color,
     string name

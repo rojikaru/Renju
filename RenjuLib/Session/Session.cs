@@ -19,6 +19,8 @@ public abstract class Session(
     public virtual IEnumerable<GameRound> Rounds { get; } = rounds;
     
     public virtual GameRound CurrentRound { get; protected set; } = rounds[0];
+    
+    public virtual RenjuBoard CurrentBoard => CurrentRound.RenjuBoard;
 
     public abstract Task Play();
     

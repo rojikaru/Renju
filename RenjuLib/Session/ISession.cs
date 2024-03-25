@@ -49,4 +49,11 @@ public interface ISession
      * </summary>
      */
     GameRound CurrentRound { get; }
+    
+    /**
+     * <summary>
+     * The board of the current game.
+     * </summary>
+     */
+    RenjuBoard CurrentBoard { get; }
 }

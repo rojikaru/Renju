@@ -42,6 +42,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
+                        <!-- TODO: Grab dynamic width and height -->
                         <Grid Width="40" Height="40">
                             <Grid.Resources>
                                 <model:BindingProxy x:Key="Proxy" Data="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window} }" />

@@ -73,7 +73,7 @@ public class GameRound(
         for (int i = 0; i < 5; i++)
         {
             if (RenjuBoard.IsWithinBounds(x, y) &&
-                RenjuBoard.CellAt(x, y).Stone == stoneToCheck)
+                RenjuBoard[x, y].Stone == stoneToCheck)
                 count++;
             else break;
 

@@ -51,8 +51,14 @@ public sealed class RenjuViewModel : ObservableObject
 
     private void OnBoardClick(Intersection? i)
     {
-        if (i is null || i.Stone != CellStone.Empty)
+        if (i is null)
             return;
+
+        if (i.Stone != CellStone.Empty)
+        {
+            // TODO: Add some kind of error message
+            return;
+        }
         
         _lastMove = i;
     }
@@ -74,7 +80,7 @@ public sealed class RenjuViewModel : ObservableObject
         };
 
     private void OnBoardChanged() 
-        => Board = new(CurrentGameSession.CurrentRound.RenjuBoard.Intersections);
+        => Board = new(CurrentGameSession.CurrentBoard.Intersections);
     
     #endregion
 }

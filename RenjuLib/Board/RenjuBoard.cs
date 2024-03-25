@@ -27,9 +27,7 @@ public class RenjuBoard
      * <returns>True if the coordinates are within the bounds, false otherwise.</returns>
      */
     public static bool IsWithinBounds(int x, int y)
-    {
-        return x is >= 0 and < BoardSize && y is >= 0 and < BoardSize;
-    }
+        => x is >= 0 and < BoardSize && y is >= 0 and < BoardSize;
 
     /**
      * <summary>
@@ -71,7 +69,7 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>The cell on a requested position.</returns>
      */
-    public Intersection CellAt(int x, int y) => Intersections[x * BoardSize + y];
+    public Intersection this[int x, int y] => Intersections[x * BoardSize + y];
 
     /**
      * <summary>
@@ -81,8 +79,8 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>True if the cell is empty, false otherwise.</returns>
      */
-    public bool IsCellEmpty(int x, int y) 
-     => CellAt(x, y).Stone == CellStone.Empty;
+    public bool IsCellEmpty(int x, int y)
+        => this[x, y].Stone == CellStone.Empty;
 
     /**
      * <summary>
@@ -102,14 +100,14 @@ public class RenjuBoard
     public void AddMove(Move move)
     {
         // Ensuring the move is within the board is done by the Move class
-        
+
         // Ensuring the cell is empty
         if (!IsCellEmpty(move.X, move.Y))
             throw new InvalidOperationException("Cell is already occupied");
 
         // Adding the move
         Intersections[move.X * BoardSize + move.Y] = move;
-        
+
         // Raising the event that the board has changed
         BoardChanged?.Invoke();
     }
