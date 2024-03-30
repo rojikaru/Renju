@@ -31,7 +31,7 @@
         <!-- Game board -->
         <Grid Grid.Row="1">
             <Grid.Background>
-                <ImageBrush ImageSource="/Pictures/Backgrounds/board1.png" Stretch="UniformToFill" />
+                <ImageBrush ImageSource="/Renju;component/Pictures/Backgrounds/board1.png" Stretch="UniformToFill" />
             </Grid.Background>
 
             <ItemsControl Margin="20" ItemsSource="{Binding Board}">
@@ -54,7 +54,8 @@
                             </Grid.InputBindings>
                             <Border>
                                 <Border.BorderBrush>Black</Border.BorderBrush>
-                                <TextBlock Text="{Binding Stone}"/>
+                                <TextBlock Text="{Binding Emoji}"/>
+                                <!-- <Image Source="{Binding PicturePath}" ></Image> -->
                             </Border>
                         </Grid>
                     </DataTemplate>

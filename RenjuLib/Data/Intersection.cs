@@ -8,7 +8,7 @@ namespace RenjuLib.Data;
  * </summary>
  */
 [SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
-public class Intersection
+public record Intersection
 {
     /**
      * <summary>
@@ -42,6 +42,29 @@ public class Intersection
      */
     public virtual CellStone Stone { get; init; }
     
+    /**
+     * <summary>
+     * The emoji representation of the stone.
+     * </summary>
+     */
+    public string Emoji => Stone switch
+    {
+        CellStone.Black => "⚫",
+        CellStone.White => "⚪",
+        _ => "⬜"
+    };
+    
+    /**
+     * <summary>
+     * The path to the picture of the stone.
+     * </summary>
+     */
+    public string PicturePath => Stone switch
+    {
+        CellStone.Black => "/Renju;component/Pictures/Intersections/black.png",
+        CellStone.White => "/Renju;component/Pictures/Intersections/white.png",
+        _ => "/Renju;component/Pictures/Intersections/empty.png"
+    };
     
     private readonly int _x;
     /**
@@ -58,7 +81,7 @@ public class Intersection
             _x = value;
         }
     }
-    
+
     private readonly int _y;
     /**
      * <summary>
@@ -89,6 +112,13 @@ public class Intersection
         Y = y;
         Stone = stone;
     }
+    
+    /**
+     * <summary>
+     * Create a new empty intersection.
+     * </summary>
+     */
+    public Intersection() : this(0, 0, CellStone.Empty) { }
     
     public override string ToString() => $"Intersection({X}, {Y}, {Stone})";
 }
