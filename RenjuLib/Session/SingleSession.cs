@@ -14,5 +14,13 @@ public class SingleSession(
     [new GameRound(blackPlayer, whitePlayer)]
 )
 {
-    public override async Task Play() => await CurrentRound.Play();
+    public override event Action? GameEnded;
+    
+    public override GameResult Result => CurrentRound.Result;
+    
+    public override async Task Play()
+    {
+        await CurrentRound.Play();
+        GameEnded?.Invoke();
+    }
 }

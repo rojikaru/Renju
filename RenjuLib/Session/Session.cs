@@ -22,6 +22,10 @@ public abstract class Session(
     
     public virtual RenjuBoard CurrentBoard => CurrentRound.RenjuBoard;
 
+    public abstract event Action? GameEnded;
+    
+    public abstract GameResult Result { get; }
+
     public abstract Task Play();
     
     public virtual event Action? BoardChanged
