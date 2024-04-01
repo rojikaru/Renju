@@ -44,7 +44,7 @@ public record Intersection
     
     /**
      * <summary>
-     * The emoji representation of the stone.
+     * The emoji representation of the intersection.
      * </summary>
      */
     public string Emoji => Stone switch
@@ -52,6 +52,7 @@ public record Intersection
         CellStone.Black => "⚫",
         CellStone.White => "⚪",
         _ => "⬜"
+        // _ => "+"
     };
     
     /**
