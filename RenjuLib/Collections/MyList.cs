@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace RenjuLib.Collections;
 
 public class MyList<T> : IList<T>

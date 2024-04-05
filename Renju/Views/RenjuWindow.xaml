@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Renju.ViewModels"
         xmlns:model="clr-namespace:Renju.Models"
         mc:Ignorable="d"
-        Title="RenjuWindow" MinHeight="478" MinWidth="800" SizeToContent="WidthAndHeight">
+        Title="Renju" MinHeight="660" MinWidth="800" SizeToContent="WidthAndHeight">
     <Window.DataContext>
         <vm:RenjuViewModel />
     </Window.DataContext>
@@ -34,10 +34,12 @@
                 <ImageBrush ImageSource="/Renju;component/Pictures/Backgrounds/board1.png" Stretch="UniformToFill" />
             </Grid.Background>
 
-            <ItemsControl Margin="20" ItemsSource="{Binding Board}">
+            <ItemsControl Margin="30" Padding="0" ItemsSource="{Binding Board}" 
+                          BorderBrush="Black" BorderThickness="1px"
+                          Width="550px">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="520" Orientation="Horizontal" />
+                        <WrapPanel Width="540" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -45,16 +47,23 @@
                         <!-- TODO: Grab dynamic width and height -->
                         <Grid Width="40" Height="40">
                             <Grid.Resources>
-                                <model:BindingProxy x:Key="Proxy" Data="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window} }" />
+                                <model:BindingProxy x:Key="Proxy" Data="{
+                                    Binding DataContext, 
+                                    RelativeSource={RelativeSource AncestorType=Window} 
+                                    }" />
                             </Grid.Resources>
                             <Grid.InputBindings>
-                                <MouseBinding  Gesture="LeftClick"
-                                               Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}"
-                                               CommandParameter="{Binding}"/>
+                                <MouseBinding Gesture="LeftClick"
+                                              Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}"
+                                              CommandParameter="{Binding}" />
                             </Grid.InputBindings>
-                            <Border>
-                                <Border.BorderBrush>Black</Border.BorderBrush>
-                                <TextBlock Text="{Binding Emoji}"/>
+                            <Line X1="0" Y1="20" X2="40" Y2="20" Stroke="Black" StrokeThickness="2px"/>
+                            <Line X1="20" Y1="0" X2="20" Y2="40" Stroke="Black" StrokeThickness="2px"/>
+                            <Border Width="40px" Height="40px">
+                                <!-- <TextBlock Text="{Binding Emoji}" /> -->
+                                <Ellipse Visibility="{Binding StoneVisibility}" 
+                                         Width="20px" Height="20px" 
+                                         Fill="{Binding StoneString}" />
                                 <!-- <Image Source="{Binding PicturePath}" ></Image> -->
                             </Border>
                         </Grid>

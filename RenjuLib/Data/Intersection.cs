@@ -41,6 +41,14 @@ public record Intersection
      * </summary>
      */
     public virtual CellStone Stone { get; init; }
+
+    public string StoneString => Stone.ToString();
+    
+    public virtual string StoneVisibility => Stone switch
+    {
+        CellStone.Empty => "Hidden",
+        _ => "Visible"
+    };
     
     /**
      * <summary>
@@ -62,9 +70,9 @@ public record Intersection
      */
     public string PicturePath => Stone switch
     {
-        CellStone.Black => "/Renju;component/Pictures/Intersections/black.png",
-        CellStone.White => "/Renju;component/Pictures/Intersections/white.png",
-        _ => "/Renju;component/Pictures/Intersections/empty.png"
+        CellStone.Black => "/Renju;component/Pictures/black.png",
+        CellStone.White => "/Renju;component/Pictures/white.png",
+        _ => "/Renju;component/Pictures/empty.png"
     };
     
     private readonly int _x;

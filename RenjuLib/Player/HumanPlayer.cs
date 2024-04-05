@@ -12,7 +12,7 @@ public class HumanPlayer(
         );
 
     /**
-     * An event for handling human's clicks on the board. <br/>
+     * An event for handling human's clicks on the board.
      * Here should be the logic to await the player's input
      * and return the move they made.
      */

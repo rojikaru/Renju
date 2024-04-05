@@ -68,6 +68,8 @@ public sealed class RenjuViewModel : ObservableObject
 
     private void OnBoardClick(Intersection? i)
     {
+        Console.WriteLine(i);
+        
         if (i is null)
             return;
 
