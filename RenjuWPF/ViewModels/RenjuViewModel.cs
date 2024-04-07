@@ -1,4 +1,4 @@
-namespace Renju.ViewModels;
+namespace RenjuWPF.ViewModels;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 public sealed class RenjuViewModel : ObservableObject

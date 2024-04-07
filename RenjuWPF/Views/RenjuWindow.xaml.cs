@@ -1,4 +1,4 @@
-namespace Renju.Views;
+namespace RenjuWPF.Views;
 
 public partial class RenjuWindow
 {

@@ -1,4 +1,4 @@
-namespace Renju.Models;
+namespace RenjuWPF.Models;
 
 public class BindingProxy : Freezable
 {
