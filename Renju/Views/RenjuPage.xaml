@@ -24,14 +24,14 @@
     </ContentPage.MenuBarItems>
 
     <!-- Game board -->
-    <Grid Margin="0,20,0,0">
+    <Grid Margin="0,40,0,0">
         <!-- <Grid.Background> -->
         <!--     <ImagePaint Image="/Renju;component/Pictures/Backgrounds/board1.png" /> -->
         <!-- </Grid.Background> -->
 
         <!-- BorderBrush="Black" BorderThickness="1" -->
         <CollectionView Margin="30,30" ItemsSource="{Binding Board}"
-                        WidthRequest="550">
+                        WidthRequest="600" ItemsLayout="HorizontalGrid, 13">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="data:Intersection">
                     <!-- 

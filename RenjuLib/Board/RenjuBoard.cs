@@ -36,9 +36,8 @@ public class RenjuBoard
      */
     public event Action? BoardChanged;
 
-    private readonly IList<Intersection> _intersections;
 
-    /**    
+    /**
      * <summary>
      * The intersections of the board. (Flat list)
      * </summary>
@@ -47,7 +46,7 @@ public class RenjuBoard
      * only on the intersections of the lines.
      * </remarks>
      */
-    public IEnumerable<Intersection> Intersections => _intersections;
+    public ObservableCollection<Intersection> Intersections { get; } = [];
 
     /**
      * <summary>
@@ -56,11 +55,9 @@ public class RenjuBoard
      */
     public RenjuBoard()
     {
-        _intersections = new MyList<Intersection>(BoardSize * BoardSize);
-
         for (var x = 0; x < BoardSize; x++)
         for (var y = 0; y < BoardSize; y++)
-            _intersections.Add(new Intersection(x, y, CellStone.Empty));
+            Intersections.Add(new Intersection(x, y, CellStone.Empty));
     }
 
     /**
@@ -71,7 +68,7 @@ public class RenjuBoard
      * <param name="y">The y coordinate of the cell.</param>
      * <returns>The cell on a requested position.</returns>
      */
-    public Intersection this[int x, int y] => _intersections[x * BoardSize + y];
+    public Intersection this[int x, int y] => Intersections[x * BoardSize + y];
 
     /**
      * <summary>
@@ -108,7 +105,7 @@ public class RenjuBoard
             throw new InvalidOperationException("Cell is already occupied");
 
         // Adding the move
-        _intersections[move.X * BoardSize + move.Y] = move;
+        Intersections[move.X * BoardSize + move.Y] = move;
 
         // Raising the event that the board has changed
         BoardChanged?.Invoke();

@@ -9,13 +9,7 @@ public sealed class RenjuViewModel : ObservableObject
 
     private ISession CurrentGameSession { get; }
 
-    private ObservableCollection<Intersection>? _board;
-
-    public ObservableCollection<Intersection> Board
-    {
-        get => _board!;
-        private set => SetProperty(ref _board, value);
-    }
+    public ObservableCollection<Intersection> Board { get; }
 
     private Intersection? _lastMove;
 
@@ -44,8 +38,7 @@ public sealed class RenjuViewModel : ObservableObject
         whitePlayer.AwaitMove += CreateMoveAwaiter(whitePlayer);
 
         CurrentGameSession = new SingleSession(blackPlayer, whitePlayer);
-        CurrentGameSession.BoardChanged += OnBoardChanged;
-        OnBoardChanged();
+        Board = CurrentGameSession.CurrentBoard.Intersections;
 
         CurrentGameSession.GameEnded += async () =>
         {
@@ -98,11 +91,6 @@ public sealed class RenjuViewModel : ObservableObject
 
             return move;
         };
-
-    private void OnBoardChanged()
-        => Board = new ObservableCollection<Intersection>(
-            CurrentGameSession.CurrentBoard.Intersections
-        );
 
     #endregion
 }
