@@ -4,11 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Renju.ViewModels"
              xmlns:data="clr-namespace:RenjuLib.Data;assembly=RenjuLib"
+             Title=""
              x:Name="RenjuContentPage"
              x:Class="Renju.Views.RenjuPage"
-             x:DataType="vm:RenjuViewModel"
-             Title="">
-    
+             x:DataType="vm:RenjuViewModel">
+
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="Game">
             <MenuFlyoutItem Text="New Game" />
@@ -22,27 +22,27 @@
             <MenuFlyoutItem Text="Settings" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
-
+    
     <!-- Game board -->
     <Grid Margin="0,40,0,0">
         <!-- <Grid.Background> -->
         <!--     <ImagePaint Image="/Renju;component/Pictures/Backgrounds/board1.png" /> -->
         <!-- </Grid.Background> -->
-
+    
         <!-- BorderBrush="Black" BorderThickness="1" -->
         <CollectionView Margin="30,30" ItemsSource="{Binding Board}"
-                        WidthRequest="600" ItemsLayout="HorizontalGrid, 13">
+                        WidthRequest="575" CanReorderItems="False" ItemsLayout="HorizontalGrid, 13">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="data:Intersection">
-                    <!-- 
-                        TODO: Grab dynamic width and height
+                   <!--  
+                       TODO: Grab dynamic width and height
                         https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml/6-xaml-markup-extensions
-                     -->
-                    <Grid WidthRequest="40" HeightRequest="40">
+                   --> 
+                    <Grid WidthRequest="40" HeightRequest="40" Margin="0">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{
-                                Binding BindingContext.BoardClickCmd, 
+                                Binding BindingContext.BoardClickCmd,
                                 Source={x:Reference RenjuContentPage}
                                 }"
                                 CommandParameter="{Binding}">
@@ -50,8 +50,9 @@
                         </Grid.GestureRecognizers>
                         <Line X1="0" Y1="20" X2="40" Y2="20" Stroke="White" StrokeThickness="2" />
                         <Line X1="20" Y1="0" X2="20" Y2="40" Stroke="White" StrokeThickness="2" />
-                        <Border WidthRequest="40" HeightRequest="40">
-                            <Label Text="{Binding Emoji}" />
+                        <Border WidthRequest="40" HeightRequest="40" Margin="0">
+                            <Label Margin="10,10,0,0" FontSize="16"
+                                   Text="{Binding Emoji}"/>
                             <!-- <Ellipse IsVisible="True" -->
                             <!--          WidthRequest="20" HeightRequest="20" -->
                             <!--          Fill="{Binding StoneString}" /> -->
@@ -63,4 +64,5 @@
         </CollectionView>
     </Grid>
     <!--/ Game board -->
+    
 </ContentPage>

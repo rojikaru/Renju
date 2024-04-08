@@ -65,7 +65,7 @@ public class MyList<T> : IList<T>
 
     public bool Remove(T item)
     {
-        var index = IndexOf(item);
+        int index = IndexOf(item);
         if (index == -1)
             return false;
         
@@ -82,7 +82,7 @@ public class MyList<T> : IList<T>
         if (item is null)
             return -1;
         
-        for (var i = 0; i < Count; i++)
+        for (int i = 0; i < Count; i++)
             if (item.Equals(_items[i]))
                 return i;
         
@@ -96,7 +96,7 @@ public class MyList<T> : IList<T>
 
         Resize();
 
-        for (var i = Count; i > index; i--)
+        for (int i = Count; i > index; i--)
             _items[i] = _items[i - 1];
         
         _items[index] = item;
@@ -110,7 +110,7 @@ public class MyList<T> : IList<T>
         if (index < 0 || index >= Count)
             throw new ArgumentOutOfRangeException(nameof(index));
 
-        for (var i = index; i < Count - 1; i++)
+        for (int i = index; i < Count - 1; i++)
             _items[i] = _items[i + 1];
         
         Count--;

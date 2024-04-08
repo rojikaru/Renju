@@ -36,7 +36,6 @@ public class RenjuBoard
      */
     public event Action? BoardChanged;
 
-
     /**
      * <summary>
      * The intersections of the board. (Flat list)
@@ -55,8 +54,8 @@ public class RenjuBoard
      */
     public RenjuBoard()
     {
-        for (var x = 0; x < BoardSize; x++)
-        for (var y = 0; y < BoardSize; y++)
+        for (int x = 0; x < BoardSize; x++)
+        for (int y = 0; y < BoardSize; y++)
             Intersections.Add(new Intersection(x, y, CellStone.Empty));
     }
 
