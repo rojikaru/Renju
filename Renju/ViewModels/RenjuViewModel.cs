@@ -36,11 +36,6 @@ public sealed class RenjuViewModel : ObservableObject
         BoardClickCmd = new RelayCommand<Intersection>(OnBoardClick);
         MessageService = messageService;
 
-        MessageService.ShowAsync(
-            "Game over!",
-            "It's a draw!",
-            "OK");
-
         // Grab the current game session from the database
         var blackPlayer = new HumanPlayer(CellStone.Black, "A");
         var whitePlayer = new HumanPlayer(CellStone.White, "B");
@@ -76,8 +71,6 @@ public sealed class RenjuViewModel : ObservableObject
 
     private void OnBoardClick(Intersection? i)
     {
-        Console.WriteLine(i);
-
         if (i is null)
             return;
 
@@ -96,7 +89,7 @@ public sealed class RenjuViewModel : ObservableObject
             // Wait for the player to make a move
             do
             {
-                await Task.Delay(400);
+                await Task.Delay(100);
             } while (_lastMove is null);
 
             // TODO: Add player info

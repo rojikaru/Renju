@@ -2,9 +2,13 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title=""
-             x:Class="Renju.Views.RenjuPage">
-
+             xmlns:vm="clr-namespace:Renju.ViewModels"
+             xmlns:data="clr-namespace:RenjuLib.Data;assembly=RenjuLib"
+             x:Name="RenjuContentPage"
+             x:Class="Renju.Views.RenjuPage"
+             x:DataType="vm:RenjuViewModel"
+             Title="">
+    
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="Game">
             <MenuFlyoutItem Text="New Game" />
@@ -20,7 +24,7 @@
     </ContentPage.MenuBarItems>
 
     <!-- Game board -->
-    <Grid>
+    <Grid Margin="0,20,0,0">
         <!-- <Grid.Background> -->
         <!--     <ImagePaint Image="/Renju;component/Pictures/Backgrounds/board1.png" /> -->
         <!-- </Grid.Background> -->
@@ -29,33 +33,28 @@
         <CollectionView Margin="30,30" ItemsSource="{Binding Board}"
                         WidthRequest="550">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <!-- TODO: Grab dynamic WidthRequest and HeightRequest -->
+                <DataTemplate x:DataType="data:Intersection">
+                    <!-- 
+                        TODO: Grab dynamic width and height
+                        https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml/6-xaml-markup-extensions
+                     -->
                     <Grid WidthRequest="40" HeightRequest="40">
-                        <!-- <Grid.Resources> -->
-                        <!--     <model:BindingProxy x:Key="Proxy" Data="{ -->
-                        <!--         Binding DataContext,  -->
-                        <!--         RelativeSource={RelativeSource AncestorType=Window}  -->
-                        <!--         }" /> -->
-                        <!-- </Grid.Resources> -->
-                        <!-- <Grid.InputBindings> -->
-                        <!--     <MouseBinding Gesture="LeftClick" -->
-                        <!--                   Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}" -->
-                        <!--                   CommandParameter="{Binding}" /> -->
-                        <!-- </Grid.InputBindings> -->
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}"
+                                Command="{
+                                Binding BindingContext.BoardClickCmd, 
+                                Source={x:Reference RenjuContentPage}
+                                }"
                                 CommandParameter="{Binding}">
                             </TapGestureRecognizer>
                         </Grid.GestureRecognizers>
                         <Line X1="0" Y1="20" X2="40" Y2="20" Stroke="White" StrokeThickness="2" />
                         <Line X1="20" Y1="0" X2="20" Y2="40" Stroke="White" StrokeThickness="2" />
                         <Border WidthRequest="40" HeightRequest="40">
-                            <!-- <TextBlock Text="{Binding Emoji}" /> -->
-                            <Ellipse IsVisible="True"
-                                     WidthRequest="20" HeightRequest="20"
-                                     Fill="{Binding StoneString}" />
+                            <Label Text="{Binding Emoji}" />
+                            <!-- <Ellipse IsVisible="True" -->
+                            <!--          WidthRequest="20" HeightRequest="20" -->
+                            <!--          Fill="{Binding StoneString}" /> -->
                             <!-- <Image Source="{Binding PicturePath}" ></Image> -->
                         </Border>
                     </Grid>
