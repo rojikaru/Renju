@@ -1,11 +1,10 @@
 ﻿namespace Renju;
 
-public partial class App : Application
+public partial class App
 {
-    public App()
+    public App(RenjuPage renjuPage)
     {
         InitializeComponent();
-
-        MainPage = new AppShell();
+        MainPage = renjuPage;
     }
 }
