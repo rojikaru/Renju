@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title=""
+             x:Class="Renju.Views.RenjuPage">
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Game">
+            <MenuFlyoutItem Text="New Game" />
+            <MenuFlyoutItem Text="Save Game" />
+            <MenuFlyoutItem Text="Load Game" />
+            <MenuFlyoutItem Text="Exit" />
+        </MenuBarItem>
+        <MenuBarItem Text="Help">
+            <MenuFlyoutItem Text="About" />
+            <MenuFlyoutItem Text="Rules" />
+            <MenuFlyoutItem Text="Settings" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <!-- Game board -->
+    <Grid>
+        <!-- <Grid.Background> -->
+        <!--     <ImagePaint Image="/Renju;component/Pictures/Backgrounds/board1.png" /> -->
+        <!-- </Grid.Background> -->
+
+        <!-- BorderBrush="Black" BorderThickness="1" -->
+        <CollectionView Margin="30,30" ItemsSource="{Binding Board}"
+                        WidthRequest="550">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- TODO: Grab dynamic WidthRequest and HeightRequest -->
+                    <Grid WidthRequest="40" HeightRequest="40">
+                        <!-- <Grid.Resources> -->
+                        <!--     <model:BindingProxy x:Key="Proxy" Data="{ -->
+                        <!--         Binding DataContext,  -->
+                        <!--         RelativeSource={RelativeSource AncestorType=Window}  -->
+                        <!--         }" /> -->
+                        <!-- </Grid.Resources> -->
+                        <!-- <Grid.InputBindings> -->
+                        <!--     <MouseBinding Gesture="LeftClick" -->
+                        <!--                   Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}" -->
+                        <!--                   CommandParameter="{Binding}" /> -->
+                        <!-- </Grid.InputBindings> -->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Data.BoardClickCmd, Source={StaticResource Proxy}}"
+                                CommandParameter="{Binding}">
+                            </TapGestureRecognizer>
+                        </Grid.GestureRecognizers>
+                        <Line X1="0" Y1="20" X2="40" Y2="20" Stroke="White" StrokeThickness="2" />
+                        <Line X1="20" Y1="0" X2="20" Y2="40" Stroke="White" StrokeThickness="2" />
+                        <Border WidthRequest="40" HeightRequest="40">
+                            <!-- <TextBlock Text="{Binding Emoji}" /> -->
+                            <Ellipse IsVisible="True"
+                                     WidthRequest="20" HeightRequest="20"
+                                     Fill="{Binding StoneString}" />
+                            <!-- <Image Source="{Binding PicturePath}" ></Image> -->
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    <!--/ Game board -->
+</ContentPage>
