@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenjuWPF", "RenjuWPF\RenjuWPF.csproj", "{470479A7-2EE9-4FAC-8496-8B9DEB8EAFDE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenjuLib", "RenjuLib\RenjuLib.csproj", "{1175AF05-5B04-4C49-9A2B-948CE0385D87}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renju", "Renju\Renju.csproj", "{A3DC55AE-93E4-4AB5-8041-B6C352D4C7C6}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{470479A7-2EE9-4FAC-8496-8B9DEB8EAFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{470479A7-2EE9-4FAC-8496-8B9DEB8EAFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{470479A7-2EE9-4FAC-8496-8B9DEB8EAFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{470479A7-2EE9-4FAC-8496-8B9DEB8EAFDE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1175AF05-5B04-4C49-9A2B-948CE0385D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1175AF05-5B04-4C49-9A2B-948CE0385D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1175AF05-5B04-4C49-9A2B-948CE0385D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
