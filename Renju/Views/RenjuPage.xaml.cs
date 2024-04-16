@@ -1,7 +1,9 @@
 ﻿namespace Renju.Views;
 
-public partial class RenjuPage
+public partial class RenjuPage : ContentPage
 {
+    private const double MinBoardSize = 850;
+    
     public RenjuPage(RenjuViewModel vm)
     {
         InitializeComponent();
@@ -15,7 +17,6 @@ public partial class RenjuPage
             return;
         
         base.OnAppearing();
-        Window.MinimumHeight = 300;
-        Window.MinimumWidth = 600;
+        Window.MinimumWidth = Window.MinimumHeight = MinBoardSize;
     }
 }

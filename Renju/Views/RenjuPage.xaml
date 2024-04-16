@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Renju.ViewModels"
              xmlns:data="clr-namespace:RenjuLib.Data;assembly=RenjuLib"
-             Title=""
+             Title="Renju Game"
              x:Name="RenjuContentPage"
              x:Class="Renju.Views.RenjuPage"
              x:DataType="vm:RenjuViewModel">
@@ -22,47 +22,80 @@
             <MenuFlyoutItem Text="Settings" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
-    
+
     <!-- Game board -->
-    <Grid Margin="0,40,0,0">
-        <!-- <Grid.Background> -->
-        <!--     <ImagePaint Image="/Renju;component/Pictures/Backgrounds/board1.png" /> -->
-        <!-- </Grid.Background> -->
-    
-        <!-- BorderBrush="Black" BorderThickness="1" -->
-        <CollectionView Margin="30,30" ItemsSource="{Binding Board}"
-                        WidthRequest="575" CanReorderItems="False" ItemsLayout="HorizontalGrid, 13">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="data:Intersection">
-                   <!--  
-                       TODO: Grab dynamic width and height
-                        https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml/6-xaml-markup-extensions
-                   --> 
-                    <Grid WidthRequest="40" HeightRequest="40" Margin="0">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{
-                                Binding BindingContext.BoardClickCmd,
-                                Source={x:Reference RenjuContentPage}
-                                }"
-                                CommandParameter="{Binding}">
-                            </TapGestureRecognizer>
-                        </Grid.GestureRecognizers>
-                        <Line X1="0" Y1="20" X2="40" Y2="20" Stroke="White" StrokeThickness="2" />
-                        <Line X1="20" Y1="0" X2="20" Y2="40" Stroke="White" StrokeThickness="2" />
-                        <Border WidthRequest="40" HeightRequest="40" Margin="0">
-                            <Label Margin="10,10,0,0" FontSize="16"
-                                   Text="{Binding Emoji}"/>
-                            <!-- <Ellipse IsVisible="True" -->
-                            <!--          WidthRequest="20" HeightRequest="20" -->
-                            <!--          Fill="{Binding StoneString}" /> -->
-                            <!-- <Image Source="{Binding PicturePath}" ></Image> -->
-                        </Border>
+    <Grid RowDefinitions=".15*,.85*" ColumnDefinitions=".15*,.85*">
+        <Border Stroke="White" StrokeThickness="2"
+                Grid.Row="1" Grid.Column="1"
+                HeightRequest="620" WidthRequest="620">
+            <Grid>
+                <!-- Board grid -->
+                <Grid>
+                    <!-- Horizontal lines -->
+                    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+                        <Border Grid.Row="0" Margin="0,-1"/>
+                        <Border Grid.Row="1" Margin="0,-1"/>
+                        <Border Grid.Row="2" Margin="0,-1"/>
+                        <Border Grid.Row="3" Margin="0,-1"/>
+                        <Border Grid.Row="4" Margin="0,-1"/>
+                        <Border Grid.Row="5" Margin="0,-1"/>
+                        <Border Grid.Row="6" Margin="0,-1"/>
+                        <Border Grid.Row="7" Margin="0,-1"/>
+                        <Border Grid.Row="8" Margin="0,-1"/>
+                        <Border Grid.Row="9" Margin="0,-1"/>
+                        <Border Grid.Row="10" Margin="0,-1"/>
+                        <Border Grid.Row="11" Margin="0,-1"/>
+                        <Border Grid.Row="12" Margin="0,-1"/>
+                        <Border Grid.Row="13" Margin="0,-1"/>
                     </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    <!--/ Horizontal lines -->
+                    <!-- Vertical lines -->
+                    <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+                        <Border Grid.Column="0" Margin="-1,0"/>
+                        <Border Grid.Column="1" Margin="-1,0"/>
+                        <Border Grid.Column="2" Margin="-1,0"/>
+                        <Border Grid.Column="3" Margin="-1,0"/>
+                        <Border Grid.Column="4" Margin="-1,0"/>
+                        <Border Grid.Column="5" Margin="-1,0"/>
+                        <Border Grid.Column="6" Margin="-1,0"/>
+                        <Border Grid.Column="7" Margin="-1,0"/>
+                        <Border Grid.Column="8" Margin="-1,0"/>
+                        <Border Grid.Column="9" Margin="-1,0"/>
+                        <Border Grid.Column="10" Margin="-1,0"/>
+                        <Border Grid.Column="11" Margin="-1,0"/>
+                        <Border Grid.Column="12" Margin="-1,0"/>
+                        <Border Grid.Column="13" Margin="-1,0"/>
+                    </Grid>
+                    <!--/ Vertical lines -->
+                </Grid>
+                <!--/ Board grid -->
+
+                <CollectionView ItemsSource="{Binding Board}"
+                                CanReorderItems="False" ItemsLayout="HorizontalGrid, 13"
+                                Margin="34" HeightRequest="573" WidthRequest="573">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Intersection">
+                            <Grid WidthRequest="33" HeightRequest="33">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{
+                                        Binding BindingContext.BoardClickCmd,
+                                        Source={x:Reference RenjuContentPage}
+                                        }"
+                                        CommandParameter="{Binding}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <!--<Border StrokeThickness="2">-->
+                                    <Label Margin="2,2,0,0" FontSize="20"
+                                        Text="{Binding Emoji}" />
+                                <!--</Border>-->
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Border>
     </Grid>
     <!--/ Game board -->
-    
+
 </ContentPage>
