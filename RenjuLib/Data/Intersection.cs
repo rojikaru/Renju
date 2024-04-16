@@ -59,8 +59,8 @@ public record Intersection
     {
         CellStone.Black => "⚫",
         CellStone.White => "⚪",
-        _ => "⬜"
-        // _ => "+"
+        // _ => "⬜"
+        _ => String.Empty,
     };
     
     /**
