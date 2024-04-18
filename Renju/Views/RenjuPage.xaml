@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Renju.ViewModels"
              xmlns:data="clr-namespace:RenjuLib.Data;assembly=RenjuLib"
-             Title="Renju Game"
              x:Name="RenjuContentPage"
              x:Class="Renju.Views.RenjuPage"
              x:DataType="vm:RenjuViewModel">
@@ -24,7 +23,7 @@
     </ContentPage.MenuBarItems>
 
     <!-- Game board -->
-    <Grid Margin="0,200,0,0">
+    <Grid>
         <Border Stroke="White" StrokeThickness="2" HeightRequest="620" WidthRequest="620">
             <Grid>
                 <!-- Board grid -->
