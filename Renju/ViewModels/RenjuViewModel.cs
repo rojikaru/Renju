@@ -1,6 +1,5 @@
 namespace Renju.ViewModels;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 public sealed class RenjuViewModel : ObservableObject
 {
     #region data

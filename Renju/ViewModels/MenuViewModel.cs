@@ -4,17 +4,20 @@
     {
         #region Properties
 
-        public INavigation Navigation { get; }
+        private INavigation Navigation { get; }
 
-        public RenjuPage RenjuPage { get; }
+        private RenjuPage RenjuPage { get; }
 
         #endregion
 
         #region Commands
 
         public ICommand HumanVsHumanCommand { get; }
+
         public ICommand HumanVsBotCommand { get; }
+
         public ICommand TournamentCommand { get; }
+
         public ICommand SettingsCommand { get; }
 
         #endregion
@@ -36,33 +39,28 @@
 
         #region Methods
 
-        public async Task HumanVsHumanExecute()
+        private async Task HumanVsHumanExecute()
+            => await Navigation.PushAsync(RenjuPage);
+
+        private bool HumanVsHumanCanExecute() => true;
+
+        private void HumanVsBotExecute()
         {
-            await Navigation.PushAsync(RenjuPage);
+            throw new NotImplementedException();
         }
 
-        public bool HumanVsHumanCanExecute() => true;
+        private bool HumanVsBotCanExecute() => false;
 
-        public void HumanVsBotExecute()
+        private void TournamentExecute()
         {
-            //if (Application.Current is null) return;
-            //Application.Current.MainPage = new RenjuPage(new RenjuViewModel(new MessageService()));
+            throw new NotImplementedException();
         }
 
-        public bool HumanVsBotCanExecute() => false;
+        private bool TournamentCanExecute() => false;
 
-        public void TournamentExecute()
+        private void SettingsExecute()
         {
-            //if (Application.Current is null) return;
-            //Application.Current.MainPage = new RenjuPage(new RenjuViewModel(new MessageService()));
-        }
-
-        public bool TournamentCanExecute() => false;
-
-        public void SettingsExecute()
-        {
-            //if (Application.Current is null) return;
-            //Application.Current.MainPage = new RenjuPage(new RenjuViewModel(new MessageService()));
+            throw new NotImplementedException();
         }
 
         public bool SettingsCanExecute() => false;
