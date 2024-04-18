@@ -19,6 +19,7 @@ public static class MauiProgram
     private static IServiceCollection InjectViewModels(this IServiceCollection collection)
     {
         collection.AddTransient<RenjuViewModel>();
+        collection.AddTransient<MenuViewModel>();
         return collection;
     }
 

@@ -5,6 +5,6 @@ public partial class App
     public App(MenuPage page)
     {
         InitializeComponent();
-        MainPage = page;
+        MainPage = new NavigationPage(page);
     }
 }
