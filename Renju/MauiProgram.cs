@@ -11,6 +11,7 @@ public static class MauiProgram
     private static IServiceCollection InjectViews(this IServiceCollection collection)
     {
         collection.AddTransient<RenjuPage>();
+        collection.AddTransient<MenuPage>();
         return collection;
     }
 

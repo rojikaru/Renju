@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Renju.ViewModels"
+             x:Class="Renju.Views.MenuPage"
+             Title="MenuPage">
+    <ContentPage.BindingContext>
+        <vm:MenuViewModel/>
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*">
+        <Label 
+            Grid.Row="2"
+            Text="Renju"
+            FontSize="Large"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Grid.Row="4"
+            Text="Player vs Player"
+            WidthRequest="200"
+            Command="{Binding HumanVsHumanCommand}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Grid.Row="5"
+            WidthRequest="200"
+            Command="{Binding HumanVsBotCommand}"
+            Text="Player vs AI"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Grid.Row="6"
+            WidthRequest="200"
+            Command="{Binding TournamentCommand}"
+            Text="Tournament"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Grid.Row="7"
+            Text="Settings"
+            WidthRequest="200"
+            Command="{Binding SettingsCommand}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>

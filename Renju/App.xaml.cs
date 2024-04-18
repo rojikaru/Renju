@@ -2,9 +2,9 @@
 
 public partial class App
 {
-    public App(RenjuPage renjuPage)
+    public App(MenuPage page)
     {
         InitializeComponent();
-        MainPage = renjuPage;
+        MainPage = page;
     }
 }

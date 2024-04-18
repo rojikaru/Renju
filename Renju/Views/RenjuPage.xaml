@@ -24,9 +24,8 @@
     </ContentPage.MenuBarItems>
 
     <!-- Game board -->
-    <Grid RowDefinitions=".15*,.85*">
-        <Border Stroke="White" StrokeThickness="2"
-                Grid.Row="1" HeightRequest="620" WidthRequest="620">
+    <Grid Margin="0,200,0,0">
+        <Border Stroke="White" StrokeThickness="2" HeightRequest="620" WidthRequest="620">
             <Grid>
                 <!-- Board grid -->
                 <Grid>

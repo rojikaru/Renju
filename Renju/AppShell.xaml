@@ -8,9 +8,6 @@
     FlyoutBehavior="Disabled"
     Title="Renju">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:RenjuPage}"
-        Route="../Views/MainPage" />
+    <ShellContent />
 
 </Shell>
