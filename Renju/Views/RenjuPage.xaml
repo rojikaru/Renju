@@ -9,16 +9,20 @@
              x:DataType="vm:RenjuViewModel">
 
     <ContentPage.MenuBarItems>
+        <!-- Menu bar -->
+        <!-- TODO: Add keyboard shortcuts -->
         <MenuBarItem Text="Game">
-            <MenuFlyoutItem Text="New Game" />
-            <MenuFlyoutItem Text="Save Game" />
-            <MenuFlyoutItem Text="Load Game" />
-            <MenuFlyoutItem Text="Exit" />
+            <MenuFlyoutItem Text="New Game" Command="{Binding NewGameCommand}" />
+            <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" />
+            <MenuFlyoutItem Text="Load Game" Command="{Binding LoadGameCommand}" />
+            <MenuFlyoutItem Text="Undo" Command="{Binding UndoMoveCommand}" />
+            <MenuFlyoutItem Text="Redo" Command="{Binding RedoMoveCommand}" />
+            <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}" />
         </MenuBarItem>
         <MenuBarItem Text="Help">
-            <MenuFlyoutItem Text="About" />
-            <MenuFlyoutItem Text="Rules" />
-            <MenuFlyoutItem Text="Settings" />
+            <MenuFlyoutItem Text="About" Command="{Binding AboutCommand}" />
+            <MenuFlyoutItem Text="Rules" Command="{Binding RulesCommand}" />
+            <MenuFlyoutItem Text="Settings" Command="{Binding SettingsCommand}" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
 

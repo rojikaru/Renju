@@ -18,7 +18,23 @@ public sealed class RenjuViewModel : ObservableObject
 
     public ICommand BoardClickCmd { get; }
 
-    // add more commands here
+    public ICommand NewGameCommand { get; set; }
+
+    public ICommand SaveGameCommand { get; set; }
+    
+    public ICommand LoadGameCommand { get; set; }
+    
+    public ICommand UndoMoveCommand { get; set; } // TODO: Implement undo/redo
+    
+    public ICommand RedoMoveCommand { get; set; }
+
+    public ICommand ExitCommand { get; set; }
+    
+    public ICommand AboutCommand { get; set; }
+    
+    public ICommand RulesCommand { get; set; }
+    
+    public ICommand SettingsCommand { get; set; }
 
     #endregion
 
@@ -26,10 +42,20 @@ public sealed class RenjuViewModel : ObservableObject
 
     public RenjuViewModel(IMessageService messageService)
     {
-        BoardClickCmd = new RelayCommand<Intersection>(OnBoardClick);
         MessageService = messageService;
+        
+        BoardClickCmd = new RelayCommand<Intersection>(OnBoardClick);
+        NewGameCommand = new AsyncRelayCommand(NewGameExecute, NewGameCanExecute);
+        SaveGameCommand = new AsyncRelayCommand(SaveGameExecute, SaveGameCanExecute);
+        LoadGameCommand = new AsyncRelayCommand(LoadGameExecute, LoadGameCanExecute);
+        UndoMoveCommand = new AsyncRelayCommand(UndoMoveExecute, UndoMoveCanExecute);
+        RedoMoveCommand = new AsyncRelayCommand(RedoMoveExecute, RedoMoveCanExecute);
+        ExitCommand = new AsyncRelayCommand(ExitExecute, ExitCanExecute);
+        AboutCommand = new AsyncRelayCommand(AboutExecute, AboutCanExecute);
+        RulesCommand = new AsyncRelayCommand(RulesExecute, RulesCanExecute);
+        SettingsCommand = new AsyncRelayCommand(SettingsExecute, SettingsCanExecute);
 
-        // Grab the current game session from the database
+        // TODO: Implement save/load game, players/session injection
         var blackPlayer = new HumanPlayer(CellStone.Black, "A");
         var whitePlayer = new HumanPlayer(CellStone.White, "B");
 
@@ -90,6 +116,73 @@ public sealed class RenjuViewModel : ObservableObject
 
             return move;
         };
+
+    private async Task NewGameExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool NewGameCanExecute() => false;
+    
+    private async Task SaveGameExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool SaveGameCanExecute() => false;
+    
+    private async Task LoadGameExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool LoadGameCanExecute() => false;
+    
+    private async Task UndoMoveExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool UndoMoveCanExecute() => false;
+    
+    private async Task RedoMoveExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool RedoMoveCanExecute() => false;
+    
+    private async Task ExitExecute()
+    {
+        // TODO: Add confirmation dialog and save game
+
+        Application.Current?.Quit();
+        // For iOS
+        Environment.Exit(0);
+    }
+    
+    private bool ExitCanExecute() => true;
+    
+    private async Task AboutExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool AboutCanExecute() => false;
+    
+    private async Task RulesExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool RulesCanExecute() => false;
+    
+    private async Task SettingsExecute()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private bool SettingsCanExecute() => false;
 
     #endregion
 }
