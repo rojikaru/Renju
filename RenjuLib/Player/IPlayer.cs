@@ -10,7 +10,7 @@ public interface IPlayer
     /**
      * The player's color.
      */
-    CellStone Color { get; }
+    CellStone Color { get; set; }
     
     /**
      * Whether the player is black.

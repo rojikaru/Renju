@@ -6,19 +6,31 @@ namespace RenjuLib.Session;
  * It contains the players, the game board, and rounds.
  * </summary>
  */
-public abstract class Session(
+public abstract class Session : ISession
+{
+    public Session(
     IPlayer blackPlayer,
     IPlayer whitePlayer,
     GameRound[] rounds
-) : ISession
-{
-    public IPlayer BlackPlayer { get; } = blackPlayer;
-    
-    public IPlayer WhitePlayer { get; } = whitePlayer;
+)
+    {
+        Rounds = rounds;
+        CurrentRound = rounds[0];
 
-    public virtual IEnumerable<GameRound> Rounds { get; } = rounds;
+        blackPlayer.Color = CellStone.Black;
+        whitePlayer.Color = CellStone.White;
+
+        BlackPlayer = blackPlayer;
+        WhitePlayer = whitePlayer;
+    }
+
+    public IPlayer BlackPlayer { get; }
     
-    public virtual GameRound CurrentRound { get; protected set; } = rounds[0];
+    public IPlayer WhitePlayer { get; }
+
+    public virtual IEnumerable<GameRound> Rounds { get; }
+    
+    public virtual GameRound CurrentRound { get; protected set; }
     
     public virtual RenjuBoard CurrentBoard => CurrentRound.RenjuBoard;
 
@@ -32,12 +44,12 @@ public abstract class Session(
     {
         add
         {
-            foreach (var round in Rounds)
+            foreach (GameRound? round in Rounds)
                 round.RenjuBoard.BoardChanged += value;
         }
         remove
         {
-            foreach (var round in Rounds)
+            foreach (GameRound? round in Rounds)
                 round.RenjuBoard.BoardChanged -= value;
         }
     }

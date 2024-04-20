@@ -113,7 +113,7 @@ public class GameRound(
     {
         try
         {
-            var move = await player.MakeMove();
+            Move move = await player.MakeMove();
             RenjuBoard.AddMove(move);
 
             if (IsWin(player.Color, move))
@@ -145,7 +145,7 @@ public class GameRound(
         bool isBlack = true;
         while (true)
         {
-            var result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
+            GameResult result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
             if (result != GameResult.OnGoing)
             {
                 Result = result;

@@ -2,7 +2,7 @@ namespace RenjuLib.Player;
 
 public abstract class Player : IPlayer
 {
-    public CellStone Color { get; }
+    public CellStone Color { get; set; }
     public string Name { get; }
     
     /**

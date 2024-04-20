@@ -23,7 +23,7 @@ public class MyList<T> : IList<T>
     public MyList(IEnumerable<T> collection)
         : this(4)
     {
-        foreach (var item in collection)
+        foreach (T? item in collection)
             Add(item);
     }
 
