@@ -10,7 +10,7 @@
 
     <ContentPage.MenuBarItems>
         <!-- Menu bar -->
-        <!-- TODO: Add keyboard shortcuts -->
+        <!-- TODO: Add keyboard shortcuts and icons -->
         <MenuBarItem Text="Game">
             <MenuFlyoutItem Text="New Game" Command="{Binding NewGameCommand}" />
             <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" />
