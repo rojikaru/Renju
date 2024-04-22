@@ -1,6 +1,6 @@
 ﻿namespace Renju.Views;
 
-public partial class RenjuPage : ContentPage
+public partial class RenjuPage
 {
     private const double MinBoardSize = 850;
     

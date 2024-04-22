@@ -22,7 +22,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
-                    
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="S" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE792;" FontFamily="Segoe MDL2 Assets" />
@@ -30,7 +30,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Load Game" Command="{Binding LoadGameCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="O" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE78C;" FontFamily="Segoe MDL2 Assets" />
@@ -38,7 +38,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Undo" Command="{Binding UndoMoveCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="Z" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE7A7;" FontFamily="Segoe MDL2 Assets" />
@@ -46,7 +46,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Redo" Command="{Binding RedoMoveCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="Y" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE7A6;" FontFamily="Segoe MDL2 Assets" />
@@ -54,7 +54,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Modifiers="Alt" Key="F4" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE711;" FontFamily="Segoe MDL2 Assets" />
@@ -64,7 +64,7 @@
         <MenuBarItem Text="Help">
             <MenuFlyoutItem Text="About" Command="{Binding AboutCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Key="F1" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE897;" FontFamily="Segoe MDL2 Assets" />
@@ -72,7 +72,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Rules" Command="{Binding RulesCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Key="F2" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE946;" FontFamily="Segoe MDL2 Assets" />
@@ -80,7 +80,7 @@
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Settings" Command="{Binding SettingsCommand}">
                 <MenuFlyoutItem.KeyboardAccelerators>
-
+                    <KeyboardAccelerator Key="F3" />
                 </MenuFlyoutItem.KeyboardAccelerators>
                 <MenuFlyoutItem.IconImageSource>
                     <FontImageSource Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" />

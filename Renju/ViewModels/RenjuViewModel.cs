@@ -5,7 +5,9 @@ public sealed class RenjuViewModel : ObservableObject
     #region data
 
     private ISession _currentGameSession;
-    public ISession CurrentGameSession { 
+
+    public ISession CurrentGameSession
+    {
         get => _currentGameSession;
         set
         {
@@ -22,6 +24,7 @@ public sealed class RenjuViewModel : ObservableObject
     }
 
     private ObservableCollection<Intersection> _board;
+
     public ObservableCollection<Intersection> Board
     {
         get => _board;
@@ -47,8 +50,6 @@ public sealed class RenjuViewModel : ObservableObject
     public ICommand SaveGameCommand { get; }
 
     public ICommand LoadGameCommand { get; }
-
-    // TODO: Implement undo/redo
 
     public ICommand UndoMoveCommand { get; }
 
@@ -174,6 +175,7 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task UndoMoveExecute()
     {
+        // TODO: Implement undo
         throw new NotImplementedException();
     }
 
@@ -181,6 +183,7 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task RedoMoveExecute()
     {
+        // TODO: Implement redo
         throw new NotImplementedException();
     }
 
@@ -188,8 +191,16 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task ExitExecute()
     {
-        // TODO: Add confirmation dialog
-        // TODO: Implement save/load game
+        // TODO: Implement saving game on exit
+
+        bool result = await MessageService.ShowAsync(
+            "Exit game?",
+            "Do you want to exit the game?",
+            "Yes",
+            "No"
+        );
+
+        if (!result) return;
 
         Application.Current?.Quit();
         // For iOS
