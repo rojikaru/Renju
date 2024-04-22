@@ -39,15 +39,15 @@
                 HumanVsHumanExecute,
                 HumanVsHumanCanExecute
             );
-            HumanVsBotCommand = new RelayCommand(
+            HumanVsBotCommand = new AsyncRelayCommand(
                 HumanVsBotExecute,
                 HumanVsBotCanExecute
             );
-            TournamentCommand = new RelayCommand(
+            TournamentCommand = new AsyncRelayCommand(
                 TournamentExecute,
                 TournamentCanExecute
             );
-            SettingsCommand = new RelayCommand(
+            SettingsCommand = new AsyncRelayCommand(
                 SettingsExecute,
                 SettingsCanExecute
             );
@@ -60,7 +60,7 @@
 
         private async Task HumanVsHumanExecute()
         {
-            ISession session = new SingleSession(
+            SingleSession session = new(
                 new HumanPlayer(CellStone.Black, "Player 1"),
                 new HumanPlayer(CellStone.White, "Player 2")
             );
@@ -73,8 +73,7 @@
         }
 
         private Action OnGameEnded(ISession session)
-        {
-            return () => MessageService.ShowAsync
+            => () => MessageService.ShowAsync
             (
                 "Game over!",
                 session.Result switch
@@ -86,25 +85,24 @@
                 },
                 "OK"
             );
-        }
 
         private bool HumanVsHumanCanExecute() => true;
 
-        private void HumanVsBotExecute()
+        private async Task HumanVsBotExecute()
         {
             throw new NotImplementedException();
         }
 
         private bool HumanVsBotCanExecute() => false;
 
-        private void TournamentExecute()
+        private async Task TournamentExecute()
         {
             throw new NotImplementedException();
         }
 
         private bool TournamentCanExecute() => false;
 
-        private void SettingsExecute()
+        private async Task SettingsExecute()
         {
             throw new NotImplementedException();
         }

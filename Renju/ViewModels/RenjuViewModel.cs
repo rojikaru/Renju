@@ -25,12 +25,16 @@ public sealed class RenjuViewModel : ObservableObject
     public ObservableCollection<Intersection> Board
     {
         get => _board;
-        set => SetProperty(ref _board, value);
+        set => SetProperty(ref _board, value, nameof(Board));
     }
 
     private Intersection? _lastMove;
 
     private IMessageService MessageService { get; }
+
+    private IPlayer BlackPlayer => CurrentGameSession.BlackPlayer;
+
+    private IPlayer WhitePlayer => CurrentGameSession.WhitePlayer;
 
     #endregion
 
@@ -66,7 +70,7 @@ public sealed class RenjuViewModel : ObservableObject
     {
         MessageService = messageService;
         _currentGameSession = null!;
-        Board = [];
+        _board = [];
 
         BoardClickCmd = new RelayCommand<Intersection>(OnBoardClick);
         NewGameCommand = new AsyncRelayCommand(

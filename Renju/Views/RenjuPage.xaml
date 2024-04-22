@@ -12,17 +12,80 @@
         <!-- Menu bar -->
         <!-- TODO: Add keyboard shortcuts and icons -->
         <MenuBarItem Text="Game">
-            <MenuFlyoutItem Text="New Game" Command="{Binding NewGameCommand}" />
-            <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" />
-            <MenuFlyoutItem Text="Load Game" Command="{Binding LoadGameCommand}" />
-            <MenuFlyoutItem Text="Undo" Command="{Binding UndoMoveCommand}" />
-            <MenuFlyoutItem Text="Redo" Command="{Binding RedoMoveCommand}" />
-            <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}" />
+            <MenuFlyoutItem Text="New Game" Command="{Binding NewGameCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="N" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE7FC;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" >
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE792;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Load Game" Command="{Binding LoadGameCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE78C;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Undo" Command="{Binding UndoMoveCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE7A7;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Redo" Command="{Binding RedoMoveCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE7A6;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE711;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
         </MenuBarItem>
         <MenuBarItem Text="Help">
-            <MenuFlyoutItem Text="About" Command="{Binding AboutCommand}" />
-            <MenuFlyoutItem Text="Rules" Command="{Binding RulesCommand}" />
-            <MenuFlyoutItem Text="Settings" Command="{Binding SettingsCommand}" />
+            <MenuFlyoutItem Text="About" Command="{Binding AboutCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE897;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Rules" Command="{Binding RulesCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE946;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Settings" Command="{Binding SettingsCommand}">
+                <MenuFlyoutItem.KeyboardAccelerators>
+
+                </MenuFlyoutItem.KeyboardAccelerators>
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
         </MenuBarItem>
     </ContentPage.MenuBarItems>
 
