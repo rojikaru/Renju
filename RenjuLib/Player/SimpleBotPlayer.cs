@@ -13,7 +13,7 @@ public class SimpleBotPlayer(
     /**
      * Await a move from a bot.
      */
-    public override async Task<Move> MakeMove()
+    public override async Task<Move> MakeMove(CancellationToken token = default)
     {
         throw new NotImplementedException();
     }

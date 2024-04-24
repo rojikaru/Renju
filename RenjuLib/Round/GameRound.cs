@@ -13,6 +13,8 @@ public class GameRound(
     IPlayer whitePlayer
 )
 {
+    private CancellationTokenSource cts = new();
+    
     /**
      * <summary>
      * <b>The board of the game.</b> <br/>
@@ -38,7 +40,7 @@ public class GameRound(
      * It can be OnGoing, BlackWon, WhiteWon, or Draw.
      * </summary>
      */
-    public GameResult Result { get; private set; }
+    public GameResult Result { get; private set; } = GameResult.NotStarted;
 
     /**
      * <summary>
@@ -49,9 +51,9 @@ public class GameRound(
      * <param name="stoneColor">The color of the player</param>
      * <param name="move">The last move</param>
      */
-    private bool IsWin(CellStone stoneColor, Move move)
+    private bool IsWinFor(Move move)
         => Direction.AllDirections.Any(
-            direction => HasFiveInARow(move.X, move.Y, direction, stoneColor)
+            direction => HasFiveInARow(move.X, move.Y, direction, move.Stone)
         );
 
     /**
@@ -113,10 +115,10 @@ public class GameRound(
     {
         try
         {
-            Move move = await player.MakeMove();
+            Move move = await player.MakeMove(cts.Token);
             RenjuBoard.AddMove(move);
 
-            if (IsWin(player.Color, move))
+            if (IsWinFor(move))
                 return player.IsBlack ? GameResult.BlackWon : GameResult.WhiteWon;
             // else
             return IsDraw() ? GameResult.Draw : GameResult.OnGoing;
@@ -143,16 +145,28 @@ public class GameRound(
     public async Task<GameResult> Play()
     {
         bool isBlack = true;
-        while (true)
+        Result = GameResult.OnGoing;
+        
+        while (Result == GameResult.OnGoing)
         {
             GameResult result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
-            if (result != GameResult.OnGoing)
-            {
-                Result = result;
-                return result;
-            }
-
+            if (Result == GameResult.Cancelled) return result;
+            Result = result;
             isBlack = !isBlack;
         }
+
+        return Result;
+    }
+
+    /**
+     * <summary>
+     * <b>Terminates the game.</b> <br/>
+     * Stops the game and sets the result to <see cref="GameResult.Cancelled"/>.
+     * </summary>
+     */
+    public async void Terminate()
+    {
+        Result = GameResult.Cancelled;
+        await cts.CancelAsync();
     }
 }

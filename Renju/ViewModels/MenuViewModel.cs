@@ -64,27 +64,16 @@
                 new HumanPlayer(CellStone.Black, "Player 1"),
                 new HumanPlayer(CellStone.White, "Player 2")
             );
-            session.GameEnded += OnGameEnded(session);
+            session.GameEnded += Session.AlertOnGameEnded(
+                session,
+                MessageService
+            );
 
             RenjuViewModel vm = (RenjuViewModel)RenjuPage.BindingContext;
             vm.CurrentGameSession = session;
             await Navigation.PushAsync(RenjuPage);
             _ = session.Play();
         }
-
-        private Action OnGameEnded(ISession session)
-            => () => MessageService.ShowAsync
-            (
-                "Game over!",
-                session.Result switch
-                {
-                    GameResult.BlackWon => "Black player wins!",
-                    GameResult.WhiteWon => "White player wins!",
-                    GameResult.Draw => "It's a draw!",
-                    _ => "Unknown result"
-                },
-                "OK"
-            );
 
         private bool HumanVsHumanCanExecute() => true;
 

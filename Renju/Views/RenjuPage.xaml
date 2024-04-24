@@ -12,7 +12,9 @@
         <!-- Menu bar -->
         <!-- TODO: Add keyboard shortcuts and icons -->
         <MenuBarItem Text="Game">
-            <MenuFlyoutItem Text="New Game" Command="{Binding NewGameCommand}">
+            <MenuFlyoutItem Text="New Game" 
+                            Command="{Binding NewGameCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="N" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -20,7 +22,9 @@
                     <FontImageSource Glyph="&#xE7FC;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Save Game" Command="{Binding SaveGameCommand}" >
+            <MenuFlyoutItem Text="Save Game" 
+                            Command="{Binding SaveGameCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="S" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -28,7 +32,9 @@
                     <FontImageSource Glyph="&#xE792;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Load Game" Command="{Binding LoadGameCommand}">
+            <MenuFlyoutItem Text="Load Game" 
+                            Command="{Binding LoadGameCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="O" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -36,7 +42,9 @@
                     <FontImageSource Glyph="&#xE78C;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Undo" Command="{Binding UndoMoveCommand}">
+            <MenuFlyoutItem Text="Undo" 
+                            Command="{Binding UndoMoveCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="Z" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -44,7 +52,9 @@
                     <FontImageSource Glyph="&#xE7A7;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Redo" Command="{Binding RedoMoveCommand}">
+            <MenuFlyoutItem Text="Redo" 
+                            Command="{Binding RedoMoveCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="Y" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -52,7 +62,9 @@
                     <FontImageSource Glyph="&#xE7A6;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}">
+            <MenuFlyoutItem Text="Exit" 
+                            Command="{Binding ExitCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Alt" Key="F4" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -62,7 +74,9 @@
             </MenuFlyoutItem>
         </MenuBarItem>
         <MenuBarItem Text="Help">
-            <MenuFlyoutItem Text="About" Command="{Binding AboutCommand}">
+            <MenuFlyoutItem Text="About" 
+                            Command="{Binding AboutCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="F1" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -70,7 +84,9 @@
                     <FontImageSource Glyph="&#xE897;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Rules" Command="{Binding RulesCommand}">
+            <MenuFlyoutItem Text="Rules" 
+                            Command="{Binding RulesCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="F2" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -78,7 +94,9 @@
                     <FontImageSource Glyph="&#xE946;" FontFamily="Segoe MDL2 Assets" />
                 </MenuFlyoutItem.IconImageSource>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Settings" Command="{Binding SettingsCommand}">
+            <MenuFlyoutItem Text="Settings" 
+                            Command="{Binding SettingsCommand}"
+                            x:DataType="vm:RenjuViewModel">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="F3" />
                 </MenuFlyoutItem.KeyboardAccelerators>

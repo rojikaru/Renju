@@ -24,5 +24,5 @@ public abstract class Player : IPlayer
         Name = name;
     }
 
-    public abstract Task<Move> MakeMove();
+    public abstract Task<Move> MakeMove(CancellationToken token = default);
 }

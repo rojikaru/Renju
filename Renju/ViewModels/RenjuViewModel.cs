@@ -136,14 +136,21 @@ public sealed class RenjuViewModel : ObservableObject
         _lastMove = i;
     }
 
-    private Func<Task<Move>> CreateMoveAwaiter(IPlayer player)
-        => async () =>
+    private Func<CancellationToken, Task<Move>> CreateMoveAwaiter(IPlayer player)
+        => async (token) =>
         {
             // Wait for the player to make a move
-            do
+            try
             {
-                await Task.Delay(300);
-            } while (_lastMove is null);
+                do
+                {
+                    await Task.Delay(300, token);
+                } while (_lastMove is null);
+            }
+            catch (TaskCanceledException)
+            {
+                return new Move(-1, -1, player.Color);
+            }
 
             // TODO: Add player info
             Move move = new(_lastMove.X, _lastMove.Y, player.Color);
@@ -154,10 +161,16 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task NewGameExecute()
     {
-        throw new NotImplementedException();
+        CurrentGameSession.Terminate();
+        CurrentGameSession = CurrentGameSession.Clone();
+        CurrentGameSession.GameEnded += Session.AlertOnGameEnded(
+            CurrentGameSession,
+            MessageService
+        );
+        _ = CurrentGameSession.Play();
     }
 
-    private bool NewGameCanExecute() => false;
+    private bool NewGameCanExecute() => true;
 
     private async Task SaveGameExecute()
     {
@@ -201,6 +214,7 @@ public sealed class RenjuViewModel : ObservableObject
         );
 
         if (!result) return;
+
 
         Application.Current?.Quit();
         // For iOS

@@ -6,7 +6,7 @@ namespace RenjuLib.Session;
  * It contains the players, the game board, and rounds.
  * </summary>
  */
-public interface ISession
+public interface ISession : ICloneable
 {
     /**
      * <summary>
@@ -31,6 +31,13 @@ public interface ISession
 
     /**
      * <summary>
+     * Terminate the game (with no winner).
+     * </summary>
+     */
+    void Terminate();
+
+    /**
+     * <summary>
      * The event that is triggered when the board changes.
      * </summary>
      */
@@ -45,6 +52,13 @@ public interface ISession
 
     /**
      * <summary>
+     * The event that is triggered when the game is terminated.
+     * </summary>
+     */
+    event Action? OnTerminated;
+
+    /**
+     * <summary>
      * The rounds of the game.
      * </summary>
      */
@@ -56,7 +70,7 @@ public interface ISession
      * </summary>
      */
     GameRound CurrentRound { get; }
-    
+
     /**
      * <summary>
      * The result of the game.
@@ -70,4 +84,13 @@ public interface ISession
      * </summary>
      */
     RenjuBoard CurrentBoard { get; }
+
+    /**
+     * <summary>
+     * Clone the session.
+     * </summary>
+     */
+    new ISession Clone();
+
+    object ICloneable.Clone() => Clone();
 }

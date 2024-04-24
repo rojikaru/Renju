@@ -2,9 +2,9 @@
 
 public partial class App
 {
-    public App(MenuPage page)
+    public App(MenuPage mainPage)
     {
         InitializeComponent();
-        MainPage = new NavigationPage(page);
+        MainPage = new NavigationPage(mainPage);
     }
 }

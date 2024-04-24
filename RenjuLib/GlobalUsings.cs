@@ -3,6 +3,7 @@
 global using System.Collections;
 global using System.Collections.ObjectModel;
 global using System.Diagnostics.CodeAnalysis;
+global using Renju.Models;
 global using RenjuLib.Board;
 global using RenjuLib.Collections;
 global using RenjuLib.Data;

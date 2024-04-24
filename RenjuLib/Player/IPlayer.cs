@@ -30,5 +30,5 @@ public interface IPlayer
     /**
      * Await a move from the player.
      */
-    Task<Move> MakeMove();
+    Task<Move> MakeMove(CancellationToken cancellationToken = default);
 }

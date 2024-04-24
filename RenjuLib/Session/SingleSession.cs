@@ -15,12 +15,22 @@ public class SingleSession(
 )
 {
     public override event Action? GameEnded;
-    
+
+    public override event Action? OnTerminated;
+
     public override GameResult Result => CurrentRound.Result;
-    
+
     public override async Task Play()
     {
         await CurrentRound.Play();
         GameEnded?.Invoke();
     }
+
+    public override void Terminate()
+    {
+        CurrentRound.Terminate();
+        OnTerminated?.Invoke();
+    }
+
+    public override ISession Clone() => new SingleSession(BlackPlayer, WhitePlayer);
 }
