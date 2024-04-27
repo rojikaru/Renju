@@ -128,6 +128,10 @@ public class GameRound(
             await Console.Error.WriteLineAsync(ex.Message);
             throw new InvalidOperationException("Invalid move");
         }
+        catch (TaskCanceledException)
+        {
+            return GameResult.Cancelled;
+        }
         catch
         {
             // On error, show the error and ask for another move
@@ -145,15 +149,12 @@ public class GameRound(
     public async Task<GameResult> Play()
     {
         bool isBlack = true;
-        Result = GameResult.OnGoing;
-        
-        while (Result == GameResult.OnGoing)
+
+        do
         {
-            GameResult result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
-            if (Result == GameResult.Cancelled) return result;
-            Result = result;
+            Result = await MakeTurn(isBlack ? blackPlayer : whitePlayer);
             isBlack = !isBlack;
-        }
+        } while (Result == GameResult.OnGoing);
 
         return Result;
     }
@@ -164,7 +165,7 @@ public class GameRound(
      * Stops the game and sets the result to <see cref="GameResult.Cancelled"/>.
      * </summary>
      */
-    public async void Terminate()
+    public async Task Terminate()
     {
         Result = GameResult.Cancelled;
         await cts.CancelAsync();

@@ -34,7 +34,7 @@ public interface ISession : ICloneable
      * Terminate the game (with no winner).
      * </summary>
      */
-    void Terminate();
+    Task Terminate();
 
     /**
      * <summary>

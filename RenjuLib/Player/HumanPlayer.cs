@@ -7,14 +7,46 @@ public class HumanPlayer(
 {
     public override async Task<Move> MakeMove(CancellationToken token = default)
         => await (
-            AwaitMove?.Invoke(token)
+            AwaitMoveInternal?.Invoke(token)
             ?? throw new InvalidOperationException("AwaitMove is null")
         );
+
+    private readonly List<Func<CancellationToken, Task<Move>>> _moveActions = [];
+    private event Func<CancellationToken, Task<Move>>? AwaitMoveInternal;
 
     /**
      * An event for handling person's clicks on the board.
      * Here should be the logic to await the player's input
      * and return the move they made.
      */
-    public event Func<CancellationToken, Task<Move>>? AwaitMove;
+    public event Func<CancellationToken, Task<Move>>? AwaitMove
+    {
+        add
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            AwaitMoveInternal += value;
+            _moveActions.Add(value);
+        }
+        remove
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            AwaitMoveInternal -= value;
+            _moveActions.Remove(value);
+        }
+    }
+
+    /**
+     * <summary>
+     * Clears all subscriptions to the AwaitMove event.
+     * </summary>
+     */
+    public void ClearSubscriptions()
+    {
+        foreach (var action in _moveActions)
+            AwaitMoveInternal -= action;
+
+        _moveActions.Clear();
+    }
 }

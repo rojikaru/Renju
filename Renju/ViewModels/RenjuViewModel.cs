@@ -137,20 +137,13 @@ public sealed class RenjuViewModel : ObservableObject
     }
 
     private Func<CancellationToken, Task<Move>> CreateMoveAwaiter(IPlayer player)
-        => async (token) =>
+        => async token =>
         {
             // Wait for the player to make a move
-            try
+            do
             {
-                do
-                {
-                    await Task.Delay(300, token);
-                } while (_lastMove is null);
-            }
-            catch (TaskCanceledException)
-            {
-                return new Move(-1, -1, player.Color);
-            }
+                await Task.Delay(300, token);
+            } while (_lastMove is null);
 
             // TODO: Add player info
             Move move = new(_lastMove.X, _lastMove.Y, player.Color);
@@ -161,12 +154,26 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task NewGameExecute()
     {
-        CurrentGameSession.Terminate();
+        await CurrentGameSession.Terminate();
+
         CurrentGameSession = CurrentGameSession.Clone();
         CurrentGameSession.GameEnded += Session.AlertOnGameEnded(
             CurrentGameSession,
             MessageService
         );
+
+        if (CurrentGameSession.BlackPlayer is HumanPlayer bp)
+        {
+            bp.ClearSubscriptions();
+            bp.AwaitMove += CreateMoveAwaiter(bp);
+        }
+
+        if (CurrentGameSession.WhitePlayer is HumanPlayer wp)
+        {
+            wp.ClearSubscriptions();
+            wp.AwaitMove += CreateMoveAwaiter(wp);
+        }
+
         _ = CurrentGameSession.Play();
     }
 

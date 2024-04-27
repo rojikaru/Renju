@@ -43,7 +43,7 @@ public abstract class Session : ISession
 
     public abstract Task Play();
 
-    public abstract void Terminate();
+    public abstract Task Terminate();
 
     public abstract ISession Clone();
 

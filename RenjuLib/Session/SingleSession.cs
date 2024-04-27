@@ -22,13 +22,14 @@ public class SingleSession(
 
     public override async Task Play()
     {
-        await CurrentRound.Play();
-        GameEnded?.Invoke();
+        GameResult result = await CurrentRound.Play();
+        if (result != GameResult.Cancelled)
+            GameEnded?.Invoke();
     }
 
-    public override void Terminate()
+    public override async Task Terminate()
     {
-        CurrentRound.Terminate();
+        await CurrentRound.Terminate();
         OnTerminated?.Invoke();
     }
 
