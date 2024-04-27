@@ -37,12 +37,7 @@ public class HumanPlayer(
         }
     }
 
-    /**
-     * <summary>
-     * Clears all subscriptions to the AwaitMove event.
-     * </summary>
-     */
-    public void ClearSubscriptions()
+    public override void ClearSubscriptions()
     {
         foreach (var action in _moveActions)
             AwaitMoveInternal -= action;

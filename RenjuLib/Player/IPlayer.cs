@@ -31,4 +31,9 @@ public interface IPlayer
      * Await a move from the player.
      */
     Task<Move> MakeMove(CancellationToken cancellationToken = default);
+    
+    /**
+     * Clear all subscriptions to the AwaitMove event.
+     */
+    void ClearSubscriptions();
 }
