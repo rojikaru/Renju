@@ -108,8 +108,12 @@
     </ContentPage.MenuBarItems>
 
     <!-- Game board -->
-    <Grid>
-        <Border Stroke="White" StrokeThickness="2" HeightRequest="620" WidthRequest="620">
+    <Grid RowDefinitions="*,11*">
+        <Label Grid.Row="0" x:Name="StatusLabel" Text="{Binding StatusLabelText}"
+               VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+               FontSize="Large" TextColor="Bisque"/>
+        <Border Stroke="White" StrokeThickness="2" 
+                Grid.Row="1" HeightRequest="620" WidthRequest="620">
             <Grid>
                 <!-- Board grid -->
                 <Grid>

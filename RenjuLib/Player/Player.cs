@@ -25,6 +25,4 @@ public abstract class Player : IPlayer
     }
 
     public abstract Task<Move> MakeMove(CancellationToken token = default);
-
-    public abstract void ClearSubscriptions();
 }

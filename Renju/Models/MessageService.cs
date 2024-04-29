@@ -4,10 +4,11 @@ public class MessageService : IMessageService
 {
     public async Task ShowAsync(string title, string message, string cancel)
     {
-        await Application.Current?.MainPage?.Dispatcher.DispatchAsync(async () =>
+        Task t = Application.Current?.MainPage?.Dispatcher.DispatchAsync(async () =>
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancel);
         })!;
+        if (t != null) await t;
     }
 
     public async Task<bool> ShowAsync(string title, string message, string accept, string cancel)

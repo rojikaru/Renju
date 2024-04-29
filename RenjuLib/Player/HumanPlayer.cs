@@ -37,7 +37,7 @@ public class HumanPlayer(
         }
     }
 
-    public override void ClearSubscriptions()
+    public void ClearSubscriptions()
     {
         foreach (var action in _moveActions)
             AwaitMoveInternal -= action;

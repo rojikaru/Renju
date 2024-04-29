@@ -13,7 +13,7 @@ public class GameRound(
     IPlayer whitePlayer
 )
 {
-    private CancellationTokenSource cts = new();
+    private readonly CancellationTokenSource _tokenSource = new();
     
     /**
      * <summary>
@@ -22,7 +22,7 @@ public class GameRound(
      * It contains the moves of the players.
      * </summary>
      */
-    public RenjuBoard RenjuBoard { get; } = new();
+    public readonly RenjuBoard RenjuBoard = new();
 
     // TODO: Add event for error handling
     // public event EventHandler<Exception> OnError;
@@ -48,7 +48,6 @@ public class GameRound(
      * considering the last move.</b><br/>
      * Checks in all directions (rows, columns, diagonals).
      * </summary>
-     * <param name="stoneColor">The color of the player</param>
      * <param name="move">The last move</param>
      */
     private bool IsWinFor(Move move)
@@ -115,7 +114,7 @@ public class GameRound(
     {
         try
         {
-            Move move = await player.MakeMove(cts.Token);
+            Move move = await player.MakeMove(_tokenSource.Token);
             RenjuBoard.AddMove(move);
 
             if (IsWinFor(move))
@@ -168,6 +167,11 @@ public class GameRound(
     public async Task Terminate()
     {
         Result = GameResult.Cancelled;
-        await cts.CancelAsync();
+        await _tokenSource.CancelAsync();
+    }
+    
+    ~GameRound()
+    {
+        _tokenSource.Dispose();
     }
 }

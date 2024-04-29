@@ -7,7 +7,6 @@ namespace RenjuLib.Data;
  * Holds necessary data for the intersection display.
  * </summary>
  */
-[SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
 public record Intersection
 {
     /**
@@ -35,20 +34,18 @@ public record Intersection
             throw new ArgumentOutOfRangeException(name);
     }
 
+    protected CellStone _stone;
+
     /**
      * <summary>
      * The stone that is placed on the intersection.
      * </summary>
      */
-    public virtual CellStone Stone { get; init; }
-
-    public string StoneString => Stone.ToString();
-    
-    public virtual string StoneVisibility => Stone switch
+    public virtual CellStone Stone
     {
-        CellStone.Empty => "Hidden",
-        _ => "Visible"
-    };
+        get => _stone;
+        init => _stone = value;
+    }
     
     /**
      * <summary>
@@ -61,18 +58,6 @@ public record Intersection
         CellStone.White => "⚪",
         // _ => "⬜"
         _ => String.Empty,
-    };
-    
-    /**
-     * <summary>
-     * The path to the picture of the stone.
-     * </summary>
-     */
-    public string PicturePath => Stone switch
-    {
-        CellStone.Black => "/Renju;component/Pictures/black.png",
-        CellStone.White => "/Renju;component/Pictures/white.png",
-        _ => "/Renju;component/Pictures/empty.png"
     };
     
     private readonly int _x;
@@ -119,7 +104,7 @@ public record Intersection
     {
         X = x;
         Y = y;
-        Stone = stone;
+        _stone = stone;
     }
     
     /**

@@ -12,8 +12,6 @@ public sealed record Move(int X, int Y, CellStone Stone)
     : Intersection(X, Y, Stone)
 {
     // TODO: Add player info
-
-    private readonly CellStone _stone;
     
     public override CellStone Stone
     {

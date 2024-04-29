@@ -4,22 +4,24 @@ public sealed class RenjuViewModel : ObservableObject
 {
     #region data
 
-    private ISession _currentGameSession;
+    private ISession? _currentGameSession;
 
     public ISession CurrentGameSession
     {
-        get => _currentGameSession;
+        get => _currentGameSession!;
         set
         {
             _currentGameSession = value;
 
-            if (value?.BlackPlayer is HumanPlayer humanBlack)
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+            if (value is null) return;
+
+            if (value.BlackPlayer is HumanPlayer humanBlack)
                 humanBlack.AwaitMove += CreateMoveAwaiter(humanBlack);
-            if (value?.WhitePlayer is HumanPlayer humanWhite)
+            if (value.WhitePlayer is HumanPlayer humanWhite)
                 humanWhite.AwaitMove += CreateMoveAwaiter(humanWhite);
 
-            if (value is not null)
-                Board = value.CurrentBoard.Intersections;
+            Board = value.CurrentBoard.Intersections;
         }
     }
 
@@ -28,16 +30,29 @@ public sealed class RenjuViewModel : ObservableObject
     public ObservableCollection<Intersection> Board
     {
         get => _board;
-        set => SetProperty(ref _board, value, nameof(Board));
+        set => SetProperty(ref _board, value);
     }
 
     private Intersection? _lastMove;
 
     private IMessageService MessageService { get; }
 
-    private IPlayer BlackPlayer => CurrentGameSession.BlackPlayer;
+    private string? _statusLabelText;
+    public string StatusLabelText
+    {
+        get => _statusLabelText ?? String.Empty;
+        set
+        {
+            SetProperty(ref _statusLabelText, value);
+            // clear after 2 seconds if no text appeared
 
-    private IPlayer WhitePlayer => CurrentGameSession.WhitePlayer;
+            Task.Delay(2000).ContinueWith(t =>
+            {
+                if (_statusLabelText != value) return;
+                SetProperty(ref _statusLabelText, String.Empty);
+            });
+        }
+    }
 
     #endregion
 
@@ -129,7 +144,7 @@ public sealed class RenjuViewModel : ObservableObject
 
         if (i.Stone != CellStone.Empty)
         {
-            // TODO: Add some kind of error message
+            StatusLabelText = "Retard lol";
             return;
         }
 
@@ -214,7 +229,7 @@ public sealed class RenjuViewModel : ObservableObject
         // TODO: Implement saving game on exit
 
         bool result = await MessageService.ShowAsync(
-            "Exit game?",
+            "Exit game",
             "Do you want to exit the game?",
             "Yes",
             "No"
