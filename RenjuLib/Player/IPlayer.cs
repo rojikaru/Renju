@@ -25,7 +25,7 @@ public interface IPlayer
     /**
      * The player's name.
      */
-    string Name { get; }
+    string Name { get; set; }
     
     /**
      * Await a move from the player.

@@ -10,6 +10,8 @@ public class SimpleBotPlayer(
     string name
 ) : Player(color, name)
 {
+    public SimpleBotPlayer() : this(CellStone.Empty, String.Empty) { }
+    
     /**
      * Await a move from a bot.
      */

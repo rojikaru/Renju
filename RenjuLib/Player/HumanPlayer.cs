@@ -5,6 +5,8 @@ public class HumanPlayer(
     string name
 ) : Player(color, name)
 {
+    public HumanPlayer() : this(CellStone.Empty, String.Empty) { }
+    
     public override async Task<Move> MakeMove(CancellationToken token = default)
         => await (
             AwaitMoveInternal?.Invoke(token)
