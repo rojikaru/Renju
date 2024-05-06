@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenjuLib", "RenjuLib\RenjuL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renju", "Renju\Renju.csproj", "{A3DC55AE-93E4-4AB5-8041-B6C352D4C7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenjuTests", "RenjuTests\RenjuTests.csproj", "{3015CFC3-22A3-4231-95F9-4AA946348E9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenjuLibTests", "RenjuLibTests\RenjuLibTests.csproj", "{3015CFC3-22A3-4231-95F9-4AA946348E9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
