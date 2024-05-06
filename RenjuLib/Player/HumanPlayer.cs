@@ -41,7 +41,7 @@ public class HumanPlayer(
 
     public void ClearSubscriptions()
     {
-        foreach (var action in _moveActions)
+        foreach (Func<CancellationToken, Task<Move>> action in _moveActions)
             AwaitMoveInternal -= action;
 
         _moveActions.Clear();

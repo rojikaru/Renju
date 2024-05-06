@@ -14,7 +14,7 @@ public class SingleSession(
     [new GameRound(blackPlayer, whitePlayer)]
 )
 {
-    private bool _started = false;
+    private bool _started, _ended;
     
     public override event Action? GameEnded;
 
@@ -32,10 +32,17 @@ public class SingleSession(
         GameResult result = await CurrentRound.Play();
         if (result != GameResult.Cancelled)
             GameEnded?.Invoke();
+        
+        _ended = true;
     }
 
     public override async Task Terminate()
     {
+        if (_ended)
+            throw new InvalidOperationException("Game has already ended");
+        
+        _ended = true;
+        
         await CurrentRound.Terminate();
         OnTerminated?.Invoke();
     }

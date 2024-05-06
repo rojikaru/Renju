@@ -11,6 +11,11 @@
     &lt;TestId&gt;NUnit3x::3015CFC3-22A3-4231-95F9-4AA946348E9C::net8.0::RenjuTests.SessionTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7af07967_002D3a8c_002D4de7_002Db5b9_002D3c9a7004291b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldStartTerminatedClone" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::3015CFC3-22A3-4231-95F9-4AA946348E9C::net8.0::RenjuTests.SessionTests.ShouldStartTerminatedClone&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c4775e6_002Dd3d6_002D43f1_002Db982_002D9bc7781631ba/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PlayerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::3015CFC3-22A3-4231-95F9-4AA946348E9C::net8.0::RenjuTests.PlayerTests&lt;/TestId&gt;&#xD;

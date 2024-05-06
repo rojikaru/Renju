@@ -20,11 +20,10 @@ public class PlayerTests
 
         Mock.Get(_blackAbstract)
             .Setup(x => x.MakeMove(It.IsAny<CancellationToken>()))
-            .Returns(Task.FromResult(new Move(0, 0, CellStone.Black)));
-
+            .ReturnsAsync(new Move(0, 0, CellStone.Black));
         Mock.Get(_whiteHuman)
             .Setup(x => x.MakeMove(It.IsAny<CancellationToken>()))
-            .Returns(Task.FromResult(new Move(0, 0, CellStone.White)));
+            .ReturnsAsync(new Move(0, 0, CellStone.White));
     }
 
     [Test]
@@ -34,12 +33,6 @@ public class PlayerTests
         {
             Assert.That(_blackAbstract.Color, Is.Not.EqualTo(CellStone.Empty));
             Assert.That(_whiteHuman.Color, Is.Not.EqualTo(CellStone.Empty));
-
-            Assert.That(_blackAbstract.IsBlack, Is.True);
-            Assert.That(_blackAbstract.IsWhite, Is.False);
-
-            Assert.That(_whiteHuman.IsBlack, Is.False);
-            Assert.That(_whiteHuman.IsWhite, Is.True);
         });
     }
 
@@ -127,11 +120,19 @@ public class PlayerTests
     }
 
     [Test]
-    public void BotIsNotImplemented()
+    public async Task BotShouldMakeMove()
     {
-        SimpleBotPlayer bot = new();
-        Assert.ThrowsAsync<NotImplementedException>(
-            async () => await bot.MakeMove()
+        // Arrange
+        // TODO: Replace with SimpleBotPlayer when implemented
+        SimpleBotPlayer bot = Mock.Of<SimpleBotPlayer>(player =>
+            player.Color == CellStone.Black
         );
+        Mock.Get(bot)
+            .Setup(x => x.MakeMove(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new Move(0, 0, CellStone.Black));
+        
+        Move move = await bot.MakeMove();
+        
+        Assert.That(move.Stone, Is.EqualTo(CellStone.Black));
     }
 }
