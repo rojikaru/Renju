@@ -30,7 +30,7 @@ public record Intersection
      */
     private static void EnsureRange(int value, string name)
     {
-        if (value is < 0 or > BoardSize) 
+        if (value is < 0 or >= BoardSize) 
             throw new ArgumentOutOfRangeException(name);
     }
 

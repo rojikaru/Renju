@@ -8,11 +8,17 @@ namespace RenjuLib.Data;
  * and the coordinates of the move.
  * </summary>
  */
-public sealed record Move(int X, int Y, CellStone Stone)
-    : Intersection(X, Y, Stone)
+public sealed record Move : Intersection
 {
-    // TODO: Add player info
+    public Move(int x, int y, CellStone stone)
+    {
+        X = x;
+        Y = y;
+        Stone = stone;
+    }
     
+    // TODO: Add player info
+
     public override CellStone Stone
     {
         get => _stone;
