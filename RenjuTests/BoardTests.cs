@@ -67,18 +67,17 @@ public class BoardTests
     }
 
     [Test]
-    public void ShouldThrowOnIncorrectBounds()
+    public void IsFalseOnIncorrectBounds()
     {
-        Assert.Multiple((() =>
+        Assert.Multiple(() =>
         {
-            Intersection wrong1 = new(13, 13, CellStone.Black),
-                wrong2 = new(-1, -1, CellStone.Black);
+            (int X, int Y) wrong1 = (13, 13), wrong2 = (-1, -1);
             
             bool isWithin1 = RenjuBoard.IsWithinBounds(wrong1.X, wrong1.Y),
                 isWithin2 = RenjuBoard.IsWithinBounds(wrong2.X, wrong2.Y);
 
             Assert.That(isWithin1, Is.False);
             Assert.That(isWithin2, Is.False);
-        }));
+        });
     }
 }
