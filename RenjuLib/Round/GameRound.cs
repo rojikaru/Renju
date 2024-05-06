@@ -148,6 +148,7 @@ public class GameRound(
     public async Task<GameResult> Play()
     {
         bool isBlack = true;
+        Result = GameResult.OnGoing;
 
         do
         {

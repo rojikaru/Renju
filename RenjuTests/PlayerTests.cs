@@ -92,11 +92,9 @@ public class PlayerTests
         humanPlayer.AwaitMove += func;
         humanPlayer.AwaitMove -= func;
 
-        Assert.Throws<InvalidOperationException>(() =>
-        {
-            Exception? ex = humanPlayer.MakeMove().Exception?.InnerException;
-            if (ex is not null) throw ex;
-        });
+        Assert.ThrowsAsync<InvalidOperationException>(
+            async () => await humanPlayer.MakeMove()
+        );
     }
 
     [Test]
@@ -108,33 +106,32 @@ public class PlayerTests
             Task.FromResult(new Move(0, 0, CellStone.White));
         humanPlayer.ClearSubscriptions();
 
-        Assert.Throws<InvalidOperationException>(() =>
-        {
-            Exception? ex = humanPlayer.MakeMove().Exception?.InnerException;
-            if (ex is not null) throw ex;
-        });
+        Assert.ThrowsAsync<InvalidOperationException>(
+            async () => await humanPlayer.MakeMove()
+        );
     }
 
     [Test]
     public void HumanShouldThrowOnNullEvent()
     {
         HumanPlayer humanPlayer = new();
-
         Assert.Multiple(() =>
         {
-            Assert.Throws<ArgumentNullException>(() => humanPlayer.AwaitMove += null!);
-            Assert.Throws<ArgumentNullException>(() => humanPlayer.AwaitMove -= null!);
+            Assert.Throws<ArgumentNullException>(
+                () => humanPlayer.AwaitMove += null!
+            );
+            Assert.Throws<ArgumentNullException>(
+                () => humanPlayer.AwaitMove -= null!
+            );
         });
     }
-    
+
     [Test]
     public void BotIsNotImplemented()
     {
         SimpleBotPlayer bot = new();
-        Assert.Throws<NotImplementedException>(() =>
-        {
-            Exception? ex = bot.MakeMove().Exception?.InnerException;
-            if (ex is not null) throw ex;
-        });
+        Assert.ThrowsAsync<NotImplementedException>(
+            async () => await bot.MakeMove()
+        );
     }
 }

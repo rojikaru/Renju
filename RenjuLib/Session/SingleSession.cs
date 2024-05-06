@@ -14,6 +14,8 @@ public class SingleSession(
     [new GameRound(blackPlayer, whitePlayer)]
 )
 {
+    private bool _started = false;
+    
     public override event Action? GameEnded;
 
     public override event Action? OnTerminated;
@@ -22,6 +24,11 @@ public class SingleSession(
 
     public override async Task Play()
     {
+        if (_started)
+            throw new InvalidOperationException("Game has already started");
+        
+        _started = true;
+        
         GameResult result = await CurrentRound.Play();
         if (result != GameResult.Cancelled)
             GameEnded?.Invoke();
