@@ -8,7 +8,9 @@ public sealed class RenjuViewModel : ObservableObject
 
     public ISession CurrentGameSession
     {
-        get => _currentGameSession!;
+        get => _currentGameSession ?? throw new InvalidOperationException(
+            "CurrentGameSession is not set"
+        );
         set
         {
             _currentGameSession = value;
@@ -46,7 +48,7 @@ public sealed class RenjuViewModel : ObservableObject
             SetProperty(ref _statusLabelText, value);
             // clear after 2 seconds if no text appeared
 
-            Task.Delay(2000).ContinueWith(t =>
+            Task.Delay(2000).ContinueWith(_ =>
             {
                 if (_statusLabelText != value) return;
                 SetProperty(ref _statusLabelText, String.Empty);
@@ -157,7 +159,7 @@ public sealed class RenjuViewModel : ObservableObject
             // Wait for the player to make a move
             do
             {
-                await Task.Delay(300, token);
+                await Task.Delay(100, token);
             } while (_lastMove is null);
 
             // TODO: Add player info
@@ -196,14 +198,14 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task SaveGameExecute()
     {
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool SaveGameCanExecute() => false;
 
     private async Task LoadGameExecute()
     {
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool LoadGameCanExecute() => false;
@@ -211,7 +213,7 @@ public sealed class RenjuViewModel : ObservableObject
     private async Task UndoMoveExecute()
     {
         // TODO: Implement undo
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool UndoMoveCanExecute() => false;
@@ -219,7 +221,7 @@ public sealed class RenjuViewModel : ObservableObject
     private async Task RedoMoveExecute()
     {
         // TODO: Implement redo
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool RedoMoveCanExecute() => false;
@@ -247,21 +249,21 @@ public sealed class RenjuViewModel : ObservableObject
 
     private async Task AboutExecute()
     {
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool AboutCanExecute() => false;
 
     private async Task RulesExecute()
     {
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool RulesCanExecute() => false;
 
     private async Task SettingsExecute()
     {
-        throw new NotImplementedException();
+        await Task.FromException(new NotImplementedException());
     }
 
     private bool SettingsCanExecute() => false;

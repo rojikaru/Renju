@@ -12,7 +12,7 @@ public class SessionTests
     {
         _blackPlayer = Mock.Of<Player>();
         _whitePlayer = Mock.Of<Player>();
-        _blackPlayerWithReturn = Mock.Of<IPlayer>();
+        _blackPlayerWithReturn = Mock.Of<Player>();
         _messageService = Mock.Of<IMessageService>();
 
         Mock.Get(_blackPlayer)
