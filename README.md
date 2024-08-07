@@ -1,38 +1,49 @@
 # Renju
 
-https://en.wikipedia.org/wiki/Renju
+A cross-platform [Renju](https://en.wikipedia.org/wiki/Renju) game built using the .NET MAUI framework.
 
-## Tasks
+## Description
 
-1. Реалізувати гру **"рендзю"**
-   (аналог хрестиків нуликів, але для перемоги треба 5 каменів,
-   а не 3, і поле не 3х3, а 15х15) для двох гравців-людей.
-   Передбачте валідацію ходів учасників: щоб не можливо було
-   походити у вже зайняту клітинку та за межі дошки.
-   А також - додайте автоматичне визначення переможця.
-2. Додати простого рандомізованого бота.
-3. Додати логування вхідних та вихідних даних для бота з метою відлагодження.
-4. Реалізуйте трошки розумнішого бота, який намагатиметься
-   ходити в точку із найдовшою лінією
-   (а також - заважатиме супернику будувати довгі лінії).
-5. Реалізувати можливість ботам грати між собою.
-   На старті гри потрібно вибрати гравців (за білих та за чорних) -
-   це можуть бути як боти, так і люди.
-6. Реалізувати можливість зберігати стан гри по команді у файл, та відновлювати із файлу.
-7. Для врівноваження шансів учасників, та урізноманітнення стратегій,
-   старт гри починається не із порожнього поля.
-   Перший гравець виставляє на поле 2 камені чорного кольору та 1 камінь білого кольору,
-   а другий - обирає, яким кольором бажає грати. Після цього перший хід робить білий.
-8. Реалізуйте кольорові теми (білі хрестики-нулики на чорному фоні,
-   або ж навпаки - чорний текст на білому фоні) та
-   дозвольте гравцеві обирати тему перед початком партії.
-   Реалізуйте графічний інтерфейс, як альтернативу командному рядку
-   та дозвольте обирати варіант інтерфейсу.
-9. Реалізуйте **"розумного"** бота.
-10. Реалізуйте можливість організовувати турнір із заданими учасниками
-    (включно з людьми). Кожен має зіграти з кожним. У випадку ігор
-    між ботами - показ інтерфейсу можна приховати, проте
-    усі партії та кожен хід повинні логуватись і має бути
-    можливість переглянути стан будь-якої гри на будь-якому ході.
-    Якщо учасником гри є людина, - партія обов'язково відбувається
-    в інтерактивному інтерфейсі.
+Renju is a strategy board game played on a 15x15 grid. This implementation brings the classic game to modern devices using the .NET MAUI framework, allowing it to run on Android, iOS, macOS, and Windows.
+
+## Features
+
+- Cross-platform support (Android, iOS, macOS, Windows)
+- Interactive 15x15 game board
+- Two-player mode
+- Game rules enforcement
+- Win detection
+- Simple and intuitive UI
+
+## Requirements
+
+- .NET 8.0 SDK or later
+- Visual Studio 2022 (17.3 or later) with the .NET MAUI workload installed
+
+## Installation
+
+1. Clone the repository
+2. Open the solution in Visual Studio
+3. Build and run the project for your desired platform
+
+## How to Play
+
+1. Launch the app on your device
+2. The game starts with an empty 15x15 board
+3. Black plays first, followed by White
+4. Players take turns placing their stones on empty intersections
+5. The goal is to form an unbroken line of exactly five stones horizontally, vertically, or diagonally
+6. The game ends when a player wins or the board is full
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Acknowledgments
+
+- .NET MAUI documentation and community
+- Renju International Federation for game rules and inspiration
+
+## Contact
+
+If you have any questions or suggestions, please open an issue in the GitHub repository or contact at the email in my profile.
